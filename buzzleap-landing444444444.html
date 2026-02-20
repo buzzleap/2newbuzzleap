@@ -151,7 +151,7 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 600px;
+            max-width: 780px;
             margin-top: 30px;
         }
 
@@ -286,7 +286,7 @@
         }
 
         .section-title {
-            font-size: 64px;
+            font-size: 56px;
             font-weight: 800;
             margin-bottom: 20px;
             letter-spacing: -1px;
@@ -387,20 +387,17 @@
         }
 
         .arrow-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--buzz-blue), var(--buzz-purple));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
+            display: none;
         }
 
         .solution-text {
-            color: var(--buzz-purple);
-            font-weight: 600;
-            font-size: 15px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 20px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.4;
         }
 
         /* Calculator */
@@ -806,7 +803,7 @@
         }
 
         .cta-banner h2 {
-            font-size: 64px;
+            font-size: 56px;
             font-weight: 800;
             margin-bottom: 25px;
             letter-spacing: -1px;
@@ -984,7 +981,7 @@
             }
 
             .hero-image-wrapper {
-                max-width: 450px;
+                max-width: 585px;
             }
 
             .hero-buttons {
@@ -997,7 +994,7 @@
             }
             
             .section-title {
-                font-size: 48px;
+                font-size: 42px;
             }
             
             .pain-grid {
@@ -1027,7 +1024,7 @@
             }
 
             .hero-image-wrapper {
-                max-width: 340px;
+                max-width: 442px;
             }
 
             .hero-buttons {
@@ -1080,7 +1077,7 @@
         <div class="hero-content">
             <h1>
                 Автоматизация <br>
-                <span class="gradient">бизнеса с AI-агентами</span>
+                <span class="gradient">бизнеса и разработка AI-агентов от 3 дней</span>
             </h1>
         </div>
 
@@ -1094,7 +1091,7 @@
         </div>
 
         <p class="hero-subtitle">
-            Подходит бизнесу и стартапам, которым нужна предсказуемая автоматизация процессов и экономия до 60% расходов
+            Подходит бизнесу, стартапам, предпринимателям и самозанятым, которым нужна предсказуемая автоматизация процессов и экономия до 60% расходов
         </p>
     </section>
 
@@ -1132,7 +1129,7 @@
                 <p>Расходы на зарплаты операторов и менеджеров растут, а эффективность остается прежней</p>
                 <div class="solution-arrow">
                     <div class="arrow-icon">→</div>
-                    <div class="solution-text">Сокращаем расходы на 40-60%</div>
+                    <div class="solution-text">Сокращаем расходы на 20-60%</div>
                 </div>
             </div>
             
@@ -1140,13 +1137,13 @@
                 <div class="pain-header">
                     <div class="pain-icon">🤝</div>
                     <div class="pain-content">
-                        <h3>Сложно найти надежного подрядчика</h3>
+                        <h3>Ошибки и простои</h3>
                     </div>
                 </div>
-                <p>Поиск опытной команды разработчиков — долгий процесс, полный рисков и неопределенности</p>
+                <p>Человеческий фактор приводит к потере данных и срыву сроков</p>
                 <div class="solution-arrow">
                     <div class="arrow-icon">→</div>
-                    <div class="solution-text">Команда опытных специалистов всегда на связи</div>
+                    <div class="solution-text">Устранение ошибок с автоматизированными процессами до 99%</div>
                 </div>
             </div>
             
@@ -1154,7 +1151,7 @@
                 <div class="pain-header">
                     <div class="pain-icon">❌</div>
                     <div class="pain-content">
-                        <h3>Работа только в рабочее время</h3>
+                        <h3>Упущенная прибыль</h3>
                     </div>
                 </div>
                 <p>Теряете заявки вечером и в выходные из-за отсутствия круглосуточной поддержки</p>
@@ -1207,9 +1204,14 @@
                     <div class="result-secondary" id="yearly-loss">1 800 000₽</div>
                     <div class="result-label">Потери в год</div>
                     
-                    <p style="margin-top: 30px; color: #9CA3AF; font-size: 15px;">
-                        С автоматизацией вы сэкономите до 70% этих средств
-                    </p>
+                    <div style="margin-top: 40px; text-align: center;">
+                        <div style="font-size: 48px; font-weight: 800; background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; margin-bottom: 15px;">
+                            С автоматизацией вы сэкономите до 70% этих средств
+                        </div>
+                        <div style="font-size: 56px; font-weight: 800; color: #10B981; margin-top: 20px;" id="savings-amount">105 000₽ / мес</div>
+                        <div style="font-size: 16px; color: #9CA3AF; margin-top: 8px;">Ваша экономия при автоматизации</div>
+                        <div style="font-size: 36px; font-weight: 700; color: #10B981; margin-top: 15px;" id="savings-yearly">1 260 000₽ / год</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1269,7 +1271,7 @@
                                 <div class="metric-label">Работа без выходных</div>
                             </div>
                             <div class="metric">
-                                <div class="metric-value">+80%</div>
+                                <div class="metric-value">+30%</div>
                                 <div class="metric-label">Больше записей</div>
                             </div>
                         </div>
@@ -1311,48 +1313,44 @@
             <div class="process-step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h3 class="step-title">Бесплатный разбор и оценка за 24 часа</h3>
-                    <p class="step-desc">Изучаем ваш бизнес, выявляем процессы для автоматизации и даем оценку сроков</p>
+                    <h3 class="step-title">Бесплатный разбор за 24 часа</h3>
+                    <p class="step-desc">
+                        <strong>Мы:</strong> подбираем оптимальное решение под ваш запрос, рассчитываем выгоду от автоматизации, оцениваем сроки реализации<br><br>
+                        <strong>От вас:</strong> процессы, которые нужно автоматизировать, текущие показатели, на которые влияет этот процесс<br><br>
+                        <em style="color: var(--buzz-purple);">Если вы не знаете, какой процесс хотите автоматизировать — обратитесь к нашему AI-консультанту или менеджеру, мы поможем</em>
+                    </p>
                 </div>
             </div>
-            
+
             <div class="process-step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3 class="step-title">Составление ТЗ и бизнес-плана</h3>
-                    <p class="step-desc">Создаем детальный план автоматизации и рассчитываем ROI вашего проекта</p>
+                    <h3 class="step-title">Создание бизнес-плана и ТЗ</h3>
+                    <p class="step-desc">
+                        <strong>Мы:</strong> разрабатываем детальный план с техническими характеристиками и этапами работы<br><br>
+                        <strong>От вас:</strong> информация об инструментах и платформах, которые вы хотели бы использовать в процессе/уже используете — CRM, Telegram и т.д.
+                    </p>
                 </div>
             </div>
-            
+
             <div class="process-step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h3 class="step-title">UI/UX дизайн и прототип</h3>
-                    <p class="step-desc">Разрабатываем интерфейс и создаем интерактивный прототип для согласования</p>
+                    <h3 class="step-title">Разработка и тестирование</h3>
+                    <p class="step-desc">
+                        <strong>Мы:</strong> разрабатываем для вас автоматизацию/продукт и тестируем его
+                    </p>
                 </div>
             </div>
-            
+
             <div class="process-step">
                 <div class="step-number">4</div>
                 <div class="step-content">
-                    <h3 class="step-title">Разработка backend и frontend</h3>
-                    <p class="step-desc">Создаем и обучаем AI-агента, интегрируем с вашими системами</p>
-                </div>
-            </div>
-            
-            <div class="process-step">
-                <div class="step-number">5</div>
-                <div class="step-content">
-                    <h3 class="step-title">Тестирование и подготовка к запуску</h3>
-                    <p class="step-desc">Проводим тесты, исправляем ошибки и готовим систему к работе</p>
-                </div>
-            </div>
-            
-            <div class="process-step">
-                <div class="step-number">6</div>
-                <div class="step-content">
-                    <h3 class="step-title">Выход на рынок и поддержка</h3>
-                    <p class="step-desc">Запускаем решение, обучаем команду и обеспечиваем техподдержку 24/7</p>
+                    <h3 class="step-title">Внедрение, обучение, поддержка</h3>
+                    <p class="step-desc">
+                        <strong>Мы:</strong> интегрируем решение в вашу систему, тестируем, обучаем вашу команду работе с решением, предоставляем поддержку от 7 до 30 дней<br><br>
+                        <em style="color: var(--buzz-purple);">Также доступна опция ежемесячной поддержки — стоимость 10% от стоимости автоматизации</em>
+                    </p>
                 </div>
             </div>
         </div>
@@ -1634,8 +1632,8 @@
                 this.y = y;
                 this.radius = radius;
                 this.color = color;
-                this.vx = (Math.random() - 0.5) / 5;
-                this.vy = (Math.random() - 0.5) / 5;
+                this.vx = (Math.random() - 0.5) / 10;
+                this.vy = (Math.random() - 0.5) / 10;
                 this.alpha = 0.225 + Math.random() * 0.225;
                 this.breaking = false;
                 this.breakParticles = [];
@@ -1650,7 +1648,7 @@
                 }
                 
                 if (this.merging) {
-                    this.mergeProgress += 0.02;
+                    this.mergeProgress += 0.01;
                     if (this.mergeProgress >= 1) {
                         this.merging = false;
                         this.mergeProgress = 0;
@@ -1676,10 +1674,10 @@
                 
                 // Keep minimum speed
                 const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                if (speed < 0.02) {
+                if (speed < 0.01) {
                     const angle = Math.random() * Math.PI * 2;
-                    this.vx = Math.cos(angle) * 0.02;
-                    this.vy = Math.sin(angle) * 0.02;
+                    this.vx = Math.cos(angle) * 0.01;
+                    this.vy = Math.sin(angle) * 0.01;
                 }
             }
             
@@ -1770,7 +1768,7 @@
                 
                 for (let i = 0; i < particleCount; i++) {
                     const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.5;
-                    const speed = 0.05 + Math.random() * 0.15;
+                    const speed = 0.025 + Math.random() * 0.075;
                     
                     this.breakParticles.push({
                         x: this.x,
@@ -1910,15 +1908,21 @@
             const employees = parseFloat(document.getElementById('employees').value) || 0;
             const salary = parseFloat(document.getElementById('salary').value) || 0;
             const hours = parseFloat(document.getElementById('hours').value) || 0;
-            
+
             const hourlyRate = salary / 160;
             const monthlyLoss = hourlyRate * hours * 22 * employees;
             const yearlyLoss = monthlyLoss * 12;
-            
-            document.getElementById('monthly-loss').textContent = 
+            const monthlySavings = monthlyLoss * 0.7;
+            const yearlySavings = yearlyLoss * 0.7;
+
+            document.getElementById('monthly-loss').textContent =
                 Math.round(monthlyLoss).toLocaleString('ru-RU') + '₽';
-            document.getElementById('yearly-loss').textContent = 
+            document.getElementById('yearly-loss').textContent =
                 Math.round(yearlyLoss).toLocaleString('ru-RU') + '₽';
+            document.getElementById('savings-amount').textContent =
+                Math.round(monthlySavings).toLocaleString('ru-RU') + '₽ / мес';
+            document.getElementById('savings-yearly').textContent =
+                Math.round(yearlySavings).toLocaleString('ru-RU') + '₽ / год';
         }
         
         document.addEventListener('DOMContentLoaded', calculateLosses);

@@ -1226,7 +1226,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-inner">
-            <div class="logo"><img src="img/Logo" alt="BUZZLEAP" style="height: 32px; vertical-align: middle; margin-right: 8px;">BUZZLEAP</div>
+            <div class="logo"><img src="img/Logo.png" alt="BUZZLEAP" style="height: 32px; vertical-align: middle; margin-right: 8px;">BUZZLEAP</div>
             <ul class="nav">
                 <li><a href="#about">О нас</a></li>
                 <li><a href="#cases">Кейсы</a></li>
@@ -1235,7 +1235,7 @@
                 <li><a href="#how-we-work">Этапы работы</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
-            <a href="#contact" class="header-btn">Хочу консультацию с AI</a>
+            <a href="#ai-calculation" class="header-btn">Хочу консультацию с AI</a>
         </div>
     </header>
 
@@ -1399,12 +1399,12 @@
             <form>
                 <div class="form-field">
                     <label>Email *</label>
-                    <input type="email" placeholder="ivan@company.com" required>
+                    <input type="email" id="email-input" placeholder="ivan@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" title="Введите корректный email, например: ivan@company.com" required>
                 </div>
 
                 <div class="form-field">
                     <label>Телефон *</label>
-                    <input type="tel" placeholder="+7 (999) 123-45-67" required>
+                    <input type="tel" id="phone-input" placeholder="8XXXXXXXXXX" pattern="8[0-9]{10}" title="Номер должен начинаться с 8 и содержать 11 цифр" required>
                 </div>
 
                 <div class="form-field">
@@ -1427,12 +1427,7 @@
 
                 <div class="form-field conditional-field active" id="field-phone">
                     <label>Во сколько вам позвонить?</label>
-                    <select style="padding: 18px 24px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: #fff; font-size: 16px; width: 100%; appearance: none; cursor: pointer;">
-                        <option value="09-12" style="background: #1a1a1a;">09:00 – 12:00</option>
-                        <option value="12-15" style="background: #1a1a1a;">12:00 – 15:00</option>
-                        <option value="15-18" style="background: #1a1a1a;">15:00 – 18:00</option>
-                        <option value="18-21" style="background: #1a1a1a;">18:00 – 21:00</option>
-                    </select>
+                    <input type="text" placeholder="Например: 14:00" style="padding: 18px 24px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: #fff; font-size: 16px; width: 100%; box-sizing: border-box;">
                 </div>
 
                 <div class="form-field conditional-field" id="field-telegram">
@@ -1587,11 +1582,11 @@
     </section>
 
     <!-- AI Agent CTA -->
-    <section class="section">
+    <section class="section" id="ai-calculation">
         <div class="cta-banner" style="margin: 0;">
             <h2>Получите индивидуальный<br>расчет с AI-агентом</h2>
             <p>Наш AI проанализирует ваш бизнес и предложит оптимальное решение</p>
-            <a href="#contact" class="btn-primary">Получить расчет</a>
+            <a href="https://t.me/AIConsultant_BuzzLead_bot#" class="btn-primary" target="_blank">Получить расчет</a>
         </div>
     </section>
 
@@ -1620,7 +1615,7 @@
                     <div class="badge-item">От 50 000₽</div>
                     <div class="badge-item">От 7 дней</div>
                 </div>
-                <a href="#contact" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
+                <a href="https://t.me/buzzleapAI#" target="_blank" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
             </div>
 
             <div class="service-card">
@@ -1639,7 +1634,7 @@
                     <div class="badge-item">От 15 000₽</div>
                     <div class="badge-item">От 7 дней</div>
                 </div>
-                <a href="#contact" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
+                <a href="https://t.me/buzzleapAI#" target="_blank" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
             </div>
 
             <div class="service-card">
@@ -1659,7 +1654,7 @@
                     <div class="badge-item">От 100 000₽</div>
                     <div class="badge-item">От 14 дней</div>
                 </div>
-                <a href="#contact" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
+                <a href="https://t.me/buzzleapAI#" target="_blank" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
             </div>
         </div>
     </section>
@@ -1696,7 +1691,7 @@
                         <div class="metric-label">Экономия бюджета</div>
                     </div>
                 </div>
-                <a href="#contact" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
+                <a href="https://t.me/buzzleapAI#" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
             </div>
 
             <div class="service-card">
@@ -1719,7 +1714,7 @@
                         <div class="metric-label">Нагрузка на персонал</div>
                     </div>
                 </div>
-                <a href="#contact" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
+                <a href="https://t.me/buzzleapAI#" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
             </div>
 
             <div class="service-card">
@@ -1732,17 +1727,17 @@
                     <div class="badge-item">150 000₽</div>
                     <div class="badge-item">От 14 дней</div>
                 </div>
-                <div class="case-metrics" style="margin-top: 25px; grid-template-columns: 1fr;">
-                    <div class="metric" style="text-align: left; display: flex; align-items: center; gap: 12px;">
-                        <div class="metric-value" style="font-size: 24px; white-space: nowrap;">&lt;1 мин</div>
+                <div class="case-metrics" style="margin-top: 25px; grid-template-columns: 1fr; gap: 20px;">
+                    <div class="metric" style="text-align: center;">
+                        <div class="metric-value" style="font-size: 36px; margin-bottom: 8px;">&lt;1 мин</div>
                         <div class="metric-label">Ответ клиенту</div>
                     </div>
-                    <div class="metric" style="text-align: left; display: flex; align-items: center; gap: 12px;">
-                        <div class="metric-value" style="font-size: 24px; white-space: nowrap;">до 65 000₽/мес</div>
+                    <div class="metric" style="text-align: center;">
+                        <div class="metric-value" style="font-size: 36px; margin-bottom: 8px;">до 65 000₽/мес</div>
                         <div class="metric-label">Экономия на персонале</div>
                     </div>
                 </div>
-                <a href="#contact" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
+                <a href="https://t.me/buzzleapAI#" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
             </div>
         </div>
     </section>
@@ -1797,7 +1792,7 @@
         <div class="cta-banner" style="margin: 0;">
             <h2>Получите бесплатный гайд<br>по автоматизации</h2>
             <p>Узнайте, какие процессы можно автоматизировать уже завтра</p>
-            <a href="#contact" class="btn-primary">Получить гайд</a>
+            <a href="https://t.me/AIConsultant_BuzzLead_bot#" class="btn-primary" target="_blank">Получить гайд</a>
         </div>
     </section>
 
@@ -1806,7 +1801,7 @@
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3><img src="img/Logo" alt="BUZZLEAP" style="height: 36px; vertical-align: middle; margin-right: 10px;">BUZZLEAP</h3>
+                    <h3><img src="img/Logo.png" alt="BUZZLEAP" style="height: 36px; vertical-align: middle; margin-right: 10px;">BUZZLEAP</h3>
                     <p>
                         AI Automation Agency — автоматизируем бизнес-процессы с помощью искусственного интеллекта
                     </p>
@@ -1835,8 +1830,8 @@
                     <ul>
                         <li><a href="tel:+79052615414">+7 905 261 54 14</a></li>
                         <li><a href="mailto:buzzleapai@mail.ru">buzzleapai@mail.ru</a></li>
-                        <li><a href="https://t.me/buzzleapAI" target="_blank">Telegram канал</a></li>
-                        <li><a href="https://t.me/AIConsultant_BuzzLead_bot" target="_blank">AI-консультант (бот)</a></li>
+                        <li><a href="https://t.me/buzzleapAI" target="_blank">Telegram</a></li>
+                        <li><a href="https://t.me/AIConsultant_BuzzLead_bot" target="_blank">AI-консультант</a></li>
                     </ul>
                 </div>
             </div>
@@ -2177,6 +2172,40 @@
             if (target) {
                 target.classList.add('active');
             }
+        }
+
+        // Phone input: only allow digits starting with 8
+        var phoneInput = document.getElementById('phone-input');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length > 0 && this.value[0] !== '8') {
+                    this.value = '8' + this.value.substring(1);
+                }
+                if (this.value.length > 11) {
+                    this.value = this.value.substring(0, 11);
+                }
+            });
+            phoneInput.addEventListener('focus', function() {
+                if (this.value === '') {
+                    this.value = '8';
+                }
+            });
+        }
+
+        // Email validation
+        var emailInput = document.getElementById('email-input');
+        if (emailInput) {
+            emailInput.addEventListener('blur', function() {
+                var emailPattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+                if (this.value && !emailPattern.test(this.value)) {
+                    this.style.borderColor = 'rgba(255, 75, 127, 0.6)';
+                    this.setCustomValidity('Введите корректный email');
+                } else {
+                    this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    this.setCustomValidity('');
+                }
+            });
         }
 
         // Smooth scroll

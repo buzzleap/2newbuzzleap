@@ -950,6 +950,92 @@
         }
 
         /* Form */
+        /* Success Modal */
+        .success-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-modal-overlay.active {
+            display: flex;
+        }
+
+        .success-modal {
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.98), rgba(30, 20, 40, 0.98));
+            border: 1px solid rgba(157, 92, 232, 0.3);
+            border-radius: 30px;
+            padding: 60px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .success-modal .success-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .success-modal h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .success-modal p {
+            color: #9CA3AF;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .success-modal .btn-telegram {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .success-modal .btn-telegram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(157, 92, 232, 0.3);
+        }
+
+        .success-modal .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #9CA3AF;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .success-modal .close-modal:hover {
+            color: #fff;
+        }
         .contact-form {
             max-width: 700px;
             margin: 0 auto;
@@ -1226,14 +1312,14 @@
     <!-- Header -->
     <header class="header">
         <div class="header-inner">
-            <div class="logo"><img src="img/Logo.png" alt="BUZZLEAP" style="height: 32px; vertical-align: middle; margin-right: 8px;">BUZZLEAP</div>
+            <div class="logo"><img src="img/Logo.png" alt="BUZZLEAP" style="height: 32px; vertical-align: middle; margin-right: 8px; -webkit-text-fill-color: initial;">BUZZLEAP</div>
             <ul class="nav">
                 <li><a href="#about">О нас</a></li>
                 <li><a href="#cases">Кейсы</a></li>
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#solutions">Готовые решения</a></li>
                 <li><a href="#how-we-work">Этапы работы</a></li>
-                <li><a href="#contact">Контакты</a></li>
+                <li><a href="#footer">Контакты</a></li>
             </ul>
             <a href="#ai-calculation" class="header-btn">Хочу консультацию с AI</a>
         </div>
@@ -1253,7 +1339,7 @@
             <div class="hero-image-fade"></div>
             <div class="hero-buttons">
                 <a href="#contact" class="btn-primary">Оставить заявку</a>
-                <a href="#calculator" class="btn-secondary">Рассчитать экономию с AI</a>
+                <a href="#calculator" class="btn-secondary">Рассчитать экономию</a>
             </div>
         </div>
 
@@ -1584,7 +1670,7 @@
     <!-- AI Agent CTA -->
     <section class="section" id="ai-calculation">
         <div class="cta-banner" style="margin: 0;">
-            <h2>Получите индивидуальный<br>расчет с AI-агентом</h2>
+            <h2>Получите индивидуальную<br>консультацию с AI-агентом</h2>
             <p>Наш AI проанализирует ваш бизнес и предложит оптимальное решение</p>
             <a href="https://t.me/AIConsultant_BuzzLead_bot#" class="btn-primary" target="_blank">Получить расчет</a>
         </div>
@@ -1797,11 +1883,11 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3><img src="img/Logo.png" alt="BUZZLEAP" style="height: 36px; vertical-align: middle; margin-right: 10px;">BUZZLEAP</h3>
+                    <h3><img src="img/Logo.png" alt="BUZZLEAP" style="height: 36px; vertical-align: middle; margin-right: 10px; -webkit-text-fill-color: initial;">BUZZLEAP</h3>
                     <p>
                         AI Automation Agency — автоматизируем бизнес-процессы с помощью искусственного интеллекта
                     </p>
@@ -1846,21 +1932,17 @@
         // Animated Background with Water Spheres
         const canvas = document.getElementById('animated-bg');
         const ctx = canvas.getContext('2d');
-        
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
-        
         const colors = [
             { r: 74, g: 159, b: 245 },   // Blue
             { r: 157, g: 92, b: 232 },   // Purple
             { r: 255, g: 75, b: 127 }    // Pink
         ];
-        
         class Sphere {
             constructor(x, y, radius, color) {
                 this.x = x;
@@ -1875,24 +1957,20 @@
                 this.merging = false;
                 this.mergeProgress = 0;
             }
-            
-            update() {
+            update(delta = 1) {
                 if (this.breaking) {
-                    this.updateBreaking();
+                    this.updateBreaking(delta);
                     return;
                 }
-                
                 if (this.merging) {
-                    this.mergeProgress += 0.01;
+                    this.mergeProgress += 0.01 * delta;
                     if (this.mergeProgress >= 1) {
                         this.merging = false;
                         this.mergeProgress = 0;
                     }
                 }
-                
-                this.x += this.vx;
-                this.y += this.vy;
-                
+                this.x += this.vx * delta;
+                this.y += this.vy * delta;
                 // Bounce off walls
                 if (this.x - this.radius < 0 || this.x + this.radius > canvas.width) {
                     this.vx *= -1;
@@ -1902,11 +1980,9 @@
                     this.vy *= -1;
                     this.y = Math.max(this.radius, Math.min(canvas.height - this.radius, this.y));
                 }
-                
                 // Slow down slightly
-                this.vx *= 0.999;
-                this.vy *= 0.999;
-                
+                this.vx *= Math.pow(0.999, delta);
+                this.vy *= Math.pow(0.999, delta);
                 // Keep minimum speed
                 const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
                 if (speed < 0.017) {
@@ -1915,28 +1991,23 @@
                     this.vy = Math.sin(angle) * 0.017;
                 }
             }
-            
-            updateBreaking() {
+            updateBreaking(delta = 1) {
                 this.breakParticles.forEach(p => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    p.alpha -= 0.015;
-                    p.radius *= 0.98;
+                    p.x += p.vx * delta;
+                    p.y += p.vy * delta;
+                    p.alpha -= 0.015 * delta;
+                    p.radius *= Math.pow(0.98, delta);
                 });
-                
                 this.breakParticles = this.breakParticles.filter(p => p.alpha > 0 && p.radius > 1);
-                
                 if (this.breakParticles.length === 0) {
                     this.breaking = false;
                 }
             }
-            
             draw() {
                 if (this.breaking) {
                     this.drawBreaking();
                     return;
                 }
-                
                 const gradient = ctx.createRadialGradient(
                     this.x - this.radius * 0.3,
                     this.y - this.radius * 0.3,
@@ -1945,23 +2016,18 @@
                     this.y,
                     this.radius
                 );
-                
                 const c = this.color;
                 const alpha = this.alpha * (1 - this.mergeProgress * 0.5);
-                
                 gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.8})`);
                 gradient.addColorStop(0.3, `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha * 0.6})`);
                 gradient.addColorStop(1, `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha * 0.2})`);
-                
                 // Glow effect
                 ctx.shadowBlur = 20 + this.mergeProgress * 20;
                 ctx.shadowColor = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
-                
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius * (1 + this.mergeProgress * 0.3), 0, Math.PI * 2);
                 ctx.fill();
-                
                 // Highlight
                 const highlight = ctx.createRadialGradient(
                     this.x - this.radius * 0.4,
@@ -1973,38 +2039,30 @@
                 );
                 highlight.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.4})`);
                 highlight.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                
                 ctx.fillStyle = highlight;
                 ctx.beginPath();
                 ctx.arc(this.x - this.radius * 0.3, this.y - this.radius * 0.3, this.radius * 0.4, 0, Math.PI * 2);
                 ctx.fill();
-                
                 ctx.shadowBlur = 0;
             }
-            
             drawBreaking() {
                 this.breakParticles.forEach(p => {
                     const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
                     const c = this.color;
-                    
                     gradient.addColorStop(0, `rgba(${c.r}, ${c.g}, ${c.b}, ${p.alpha * 0.8})`);
                     gradient.addColorStop(1, `rgba(${c.r}, ${c.g}, ${c.b}, 0)`);
-                    
                     ctx.fillStyle = gradient;
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                     ctx.fill();
                 });
             }
-            
             break() {
                 this.breaking = true;
                 const particleCount = 8 + Math.floor(Math.random() * 8);
-                
                 for (let i = 0; i < particleCount; i++) {
                     const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.5;
                     const speed = 0.027 + Math.random() * 0.067;
-                    
                     this.breakParticles.push({
                         x: this.x,
                         y: this.y,
@@ -2016,69 +2074,55 @@
                 }
             }
         }
-        
         // Create spheres
         const spheres = [];
         const sphereCount = Math.floor((canvas.width * canvas.height) / 50000);
-        
         for (let i = 0; i < sphereCount; i++) {
             const radius = 30 + Math.random() * 70;
             const x = radius + Math.random() * (canvas.width - radius * 2);
             const y = radius + Math.random() * (canvas.height - radius * 2);
             const color = colors[Math.floor(Math.random() * colors.length)];
-            
             spheres.push(new Sphere(x, y, radius, color));
         }
-        
-        // Collision detection and response
+        // Collision detection and response — FIXED (no velocity accumulation bug)
         function checkCollisions() {
             for (let i = 0; i < spheres.length; i++) {
                 if (spheres[i].breaking) continue;
-                
                 for (let j = i + 1; j < spheres.length; j++) {
                     if (spheres[j].breaking) continue;
-                    
                     const dx = spheres[j].x - spheres[i].x;
                     const dy = spheres[j].y - spheres[i].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     const minDist = spheres[i].radius + spheres[j].radius;
-                    
                     if (distance < minDist) {
-                        // Collision detected
                         const angle = Math.atan2(dy, dx);
                         const sin = Math.sin(angle);
                         const cos = Math.cos(angle);
-                        
-                        // Rotate velocities
+                        // Rotate velocities into collision frame
                         const vx1 = spheres[i].vx * cos + spheres[i].vy * sin;
                         const vy1 = spheres[i].vy * cos - spheres[i].vx * sin;
                         const vx2 = spheres[j].vx * cos + spheres[j].vy * sin;
                         const vy2 = spheres[j].vy * cos - spheres[j].vx * sin;
-                        
-                        // Elastic collision
-                        const vxTotal = vx1 - vx2;
-                        spheres[i].vx = (vx1 * (spheres[i].radius - spheres[j].radius) + (2 * spheres[j].radius * vx2)) / (spheres[i].radius + spheres[j].radius);
-                        spheres[j].vx = vxTotal + spheres[i].vx;
-                        
-                        // Rotate back
-                        spheres[i].vx = spheres[i].vx * cos - vy1 * sin;
-                        spheres[i].vy = vy1 * cos + spheres[i].vx * sin;
-                        spheres[j].vx = spheres[j].vx * cos - vy2 * sin;
-                        spheres[j].vy = vy2 * cos + spheres[j].vx * sin;
-                        
-                        // Separate spheres
+                        // Elastic collision along x-axis in collision frame
+                        const m1 = spheres[i].radius;
+                        const m2 = spheres[j].radius;
+                        const newVx1 = ((m1 - m2) * vx1 + 2 * m2 * vx2) / (m1 + m2);
+                        const newVx2 = ((m2 - m1) * vx2 + 2 * m1 * vx1) / (m1 + m2);
+                        // Rotate back to world frame — FIX: use temp vars to avoid overwrite bug
+                        spheres[i].vx = newVx1 * cos - vy1 * sin;
+                        spheres[i].vy = vy1 * cos + newVx1 * sin;
+                        spheres[j].vx = newVx2 * cos - vy2 * sin;
+                        spheres[j].vy = vy2 * cos + newVx2 * sin;
+                        // Separate spheres so they don't overlap
                         const overlap = minDist - distance;
                         const separateX = (overlap / 2) * cos;
                         const separateY = (overlap / 2) * sin;
-                        
                         spheres[i].x -= separateX;
                         spheres[i].y -= separateY;
                         spheres[j].x += separateX;
                         spheres[j].y += separateY;
-                        
-                        // Random behavior: merge or break
+                        // Random behavior: break or merge
                         const behavior = Math.random();
-                        
                         if (behavior < 0.05) {
                             // Break (5% chance)
                             if (Math.random() < 0.5) {
@@ -2095,38 +2139,32 @@
                 }
             }
         }
-        
-        // Animation loop - simple and constant speed
-        function animate() {
+        // Animation loop — FIXED: delta time so speed is same on 60Hz and 144Hz monitors
+        let lastTime = 0;
+        function animate(timestamp) {
+            const delta = lastTime === 0 ? 1 : Math.min((timestamp - lastTime) / 16.67, 3);
+            lastTime = timestamp;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             checkCollisions();
-            
             spheres.forEach(sphere => {
-                sphere.update();
+                sphere.update(delta);
                 sphere.draw();
             });
-            
-            // Remove fully broken spheres and add new ones
+            // Remove fully broken spheres and add new ones to keep count stable
             for (let i = spheres.length - 1; i >= 0; i--) {
                 if (spheres[i].breaking && spheres[i].breakParticles.length === 0) {
                     spheres.splice(i, 1);
-                    
-                    // Add new sphere
                     const radius = 30 + Math.random() * 70;
                     const x = radius + Math.random() * (canvas.width - radius * 2);
                     const y = radius + Math.random() * (canvas.height - radius * 2);
                     const color = colors[Math.floor(Math.random() * colors.length)];
-                    
                     spheres.push(new Sphere(x, y, radius, color));
                 }
             }
-            
             requestAnimationFrame(animate);
         }
-        
         // Start animation
-        animate();
+        animate(0);
         
         // Cases slider navigation
         function scrollCases(direction) {
@@ -2217,6 +2255,97 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-        });    </script>
+        });
+
+        // Form submission handler
+        (function() {
+            var form = document.querySelector('.contact-form form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    var email = document.getElementById('email-input').value;
+                    var phone = document.getElementById('phone-input').value;
+                    var contactMethod = document.querySelector('input[name="contact_method"]:checked').value;
+                    var telegramNick = '';
+                    var callTime = '';
+                    var customTime = '';
+                    var message = '';
+
+                    var phoneField = document.getElementById('field-phone');
+                    if (phoneField && phoneField.classList.contains('active')) {
+                        callTime = phoneField.querySelector('input').value;
+                    }
+
+                    var telegramField = document.getElementById('field-telegram');
+                    if (telegramField && telegramField.classList.contains('active')) {
+                        telegramNick = telegramField.querySelector('input').value;
+                    }
+
+                    var now = new Date();
+                    var submittedAt = now.toISOString();
+
+                    var payload = {
+                        phone: phone,
+                        email: email,
+                        message: message,
+                        contactMethod: contactMethod,
+                        telegramNick: telegramNick,
+                        callTime: callTime,
+                        customTime: customTime,
+                        submittedAt: submittedAt
+                    };
+
+                    var submitBtn = form.querySelector('button[type="submit"]');
+                    var origText = submitBtn.textContent;
+                    submitBtn.textContent = 'Отправка...';
+                    submitBtn.disabled = true;
+
+                    fetch('https://hook.eu1.make.com/bjh7418s0rkj17u4f51x7jb6nva5hwfe', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(function() {
+                        form.reset();
+                        submitBtn.textContent = origText;
+                        submitBtn.disabled = false;
+                        document.getElementById('successModal').classList.add('active');
+                    })
+                    .catch(function() {
+                        form.reset();
+                        submitBtn.textContent = origText;
+                        submitBtn.disabled = false;
+                        document.getElementById('successModal').classList.add('active');
+                    });
+                });
+            }
+        })();
+
+        // Success modal functions
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSuccessModal();
+            }
+        });
+    </script>
+
+    <!-- Success Modal -->
+    <div class="success-modal-overlay" id="successModal">
+        <div class="success-modal">
+            <button class="close-modal" onclick="closeSuccessModal()">&times;</button>
+            <div class="success-icon">&#10004;</div>
+            <h3>Спасибо за заявку!</h3>
+            <p>Мы получили вашу заявку и свяжемся с вами в ближайшее время. А пока можете получить консультацию у нашего AI-агента в Telegram</p>
+            <a href="https://t.me/AIConsultant_BuzzLead_bot#" target="_blank" class="btn-telegram">Перейти к AI-консультанту</a>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -1226,11 +1226,12 @@
     <!-- Header -->
     <header class="header">
         <div class="header-inner">
-            <div class="logo">BUZZLEAP</div>
+            <div class="logo"><img src="img/Logo" alt="BUZZLEAP" style="height: 32px; vertical-align: middle; margin-right: 8px;">BUZZLEAP</div>
             <ul class="nav">
                 <li><a href="#about">О нас</a></li>
                 <li><a href="#cases">Кейсы</a></li>
                 <li><a href="#services">Услуги</a></li>
+                <li><a href="#solutions">Готовые решения</a></li>
                 <li><a href="#how-we-work">Этапы работы</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
@@ -1383,12 +1384,75 @@
         </div>
     </section>
 
-    <!-- AI Agent CTA -->
-    <section class="section">
-        <div class="cta-banner" style="margin: 0;">
-            <h2>Получите индивидуальный<br>расчет с AI-агентом</h2>
-            <p>Наш AI проанализирует ваш бизнес и предложит оптимальное решение</p>
-            <a href="#contact" class="btn-primary">Получить расчет</a>
+    <!-- Contact Form -->
+    <section class="section" id="contact">
+        <div class="section-header">
+            <h2 class="section-title">
+                Оставьте <span class="gradient">заявку</span>
+            </h2>
+            <p class="section-subtitle">
+                Мы свяжемся с вами в течение 2 часов
+            </p>
+        </div>
+
+        <div class="contact-form">
+            <form>
+                <div class="form-field">
+                    <label>Email *</label>
+                    <input type="email" placeholder="ivan@company.com" required>
+                </div>
+
+                <div class="form-field">
+                    <label>Телефон *</label>
+                    <input type="tel" placeholder="+7 (999) 123-45-67" required>
+                </div>
+
+                <div class="form-field">
+                    <label>Как с вами связаться? *</label>
+                    <div class="contact-method-group">
+                        <label>
+                            <input type="radio" name="contact_method" value="phone" checked onchange="toggleContactField(this.value)">
+                            Позвонить по телефону
+                        </label>
+                        <label>
+                            <input type="radio" name="contact_method" value="telegram" onchange="toggleContactField(this.value)">
+                            Написать в Telegram
+                        </label>
+                        <label>
+                            <input type="radio" name="contact_method" value="whatsapp" onchange="toggleContactField(this.value)">
+                            Написать в WhatsApp
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-field conditional-field active" id="field-phone">
+                    <label>Во сколько вам позвонить?</label>
+                    <select style="padding: 18px 24px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: #fff; font-size: 16px; width: 100%; appearance: none; cursor: pointer;">
+                        <option value="09-12" style="background: #1a1a1a;">09:00 – 12:00</option>
+                        <option value="12-15" style="background: #1a1a1a;">12:00 – 15:00</option>
+                        <option value="15-18" style="background: #1a1a1a;">15:00 – 18:00</option>
+                        <option value="18-21" style="background: #1a1a1a;">18:00 – 21:00</option>
+                    </select>
+                </div>
+
+                <div class="form-field conditional-field" id="field-telegram">
+                    <label>Ваш Telegram</label>
+                    <input type="text" placeholder="@username">
+                </div>
+
+                <!-- Google reCAPTCHA — вставьте ваш site key -->
+                <div id="recaptcha-container" style="margin-bottom: 20px;">
+                    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+                    <!-- <div class="g-recaptcha" data-sitekey="ВАШ_SITE_KEY"></div> -->
+                    <div style="padding: 15px 20px; background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px; text-align: center; color: #9CA3AF; font-size: 14px;">
+                        reCAPTCHA — вставьте ваш индивидуальный код
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; padding: 20px;">
+                    Отправить заявку
+                </button>
+            </form>
         </div>
     </section>
 
@@ -1522,6 +1586,15 @@
         </div>
     </section>
 
+    <!-- AI Agent CTA -->
+    <section class="section">
+        <div class="cta-banner" style="margin: 0;">
+            <h2>Получите индивидуальный<br>расчет с AI-агентом</h2>
+            <p>Наш AI проанализирует ваш бизнес и предложит оптимальное решение</p>
+            <a href="#contact" class="btn-primary">Получить расчет</a>
+        </div>
+    </section>
+
     <!-- Services -->
     <section class="section" id="services">
         <div class="section-header">
@@ -1547,6 +1620,7 @@
                     <div class="badge-item">От 50 000₽</div>
                     <div class="badge-item">От 7 дней</div>
                 </div>
+                <a href="#contact" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
             </div>
 
             <div class="service-card">
@@ -1565,6 +1639,7 @@
                     <div class="badge-item">От 15 000₽</div>
                     <div class="badge-item">От 7 дней</div>
                 </div>
+                <a href="#contact" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
             </div>
 
             <div class="service-card">
@@ -1584,12 +1659,13 @@
                     <div class="badge-item">От 100 000₽</div>
                     <div class="badge-item">От 14 дней</div>
                 </div>
+                <a href="#contact" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
             </div>
         </div>
     </section>
 
     <!-- Ready Solutions -->
-    <section class="section">
+    <section class="section" id="solutions">
         <div class="section-header">
             <h2 class="section-title">
                 <span class="gradient">Готовые решения</span>
@@ -1620,6 +1696,7 @@
                         <div class="metric-label">Экономия бюджета</div>
                     </div>
                 </div>
+                <a href="#contact" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
             </div>
 
             <div class="service-card">
@@ -1642,6 +1719,7 @@
                         <div class="metric-label">Нагрузка на персонал</div>
                     </div>
                 </div>
+                <a href="#contact" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
             </div>
 
             <div class="service-card">
@@ -1654,16 +1732,17 @@
                     <div class="badge-item">150 000₽</div>
                     <div class="badge-item">От 14 дней</div>
                 </div>
-                <div class="case-metrics" style="margin-top: 25px;">
-                    <div class="metric">
-                        <div class="metric-value">до 65 000₽/мес</div>
-                        <div class="metric-label">Экономия на персонале</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">&lt;1 мин</div>
+                <div class="case-metrics" style="margin-top: 25px; grid-template-columns: 1fr;">
+                    <div class="metric" style="text-align: left; display: flex; align-items: center; gap: 12px;">
+                        <div class="metric-value" style="font-size: 24px; white-space: nowrap;">&lt;1 мин</div>
                         <div class="metric-label">Ответ клиенту</div>
                     </div>
+                    <div class="metric" style="text-align: left; display: flex; align-items: center; gap: 12px;">
+                        <div class="metric-value" style="font-size: 24px; white-space: nowrap;">до 65 000₽/мес</div>
+                        <div class="metric-label">Экономия на персонале</div>
+                    </div>
                 </div>
+                <a href="#contact" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
             </div>
         </div>
     </section>
@@ -1722,94 +1801,17 @@
         </div>
     </section>
 
-    <!-- Contact Form -->
-    <section class="section" id="contact">
-        <div class="section-header">
-            <h2 class="section-title">
-                Оставьте <span class="gradient">заявку</span>
-            </h2>
-            <p class="section-subtitle">
-                Мы свяжемся с вами в течение 2 часов
-            </p>
-        </div>
-
-        <div class="contact-form">
-            <form>
-                <div class="form-field">
-                    <label>Email *</label>
-                    <input type="email" placeholder="ivan@company.com" required>
-                </div>
-
-                <div class="form-field">
-                    <label>Телефон *</label>
-                    <input type="tel" placeholder="+7 (999) 123-45-67" required>
-                </div>
-
-                <div class="form-field">
-                    <label>Как с вами связаться? *</label>
-                    <div class="contact-method-group">
-                        <label>
-                            <input type="radio" name="contact_method" value="phone" checked onchange="toggleContactField(this.value)">
-                            Позвонить по телефону
-                        </label>
-                        <label>
-                            <input type="radio" name="contact_method" value="telegram" onchange="toggleContactField(this.value)">
-                            Написать в Telegram
-                        </label>
-                        <label>
-                            <input type="radio" name="contact_method" value="whatsapp" onchange="toggleContactField(this.value)">
-                            Написать в WhatsApp
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-field conditional-field active" id="field-phone">
-                    <label>Номер телефона для звонка</label>
-                    <input type="tel" placeholder="+7 (999) 123-45-67">
-                </div>
-
-                <div class="form-field conditional-field" id="field-telegram">
-                    <label>Ваш Telegram</label>
-                    <input type="text" placeholder="@username">
-                </div>
-
-                <div class="form-field conditional-field" id="field-whatsapp">
-                    <label>Номер WhatsApp</label>
-                    <input type="tel" placeholder="+7 (999) 123-45-67">
-                </div>
-
-                <!-- Google reCAPTCHA — вставьте ваш site key -->
-                <div id="recaptcha-container" style="margin-bottom: 20px;">
-                    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
-                    <!-- <div class="g-recaptcha" data-sitekey="ВАШ_SITE_KEY"></div> -->
-                    <div style="padding: 15px 20px; background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px; text-align: center; color: #9CA3AF; font-size: 14px;">
-                        reCAPTCHA — вставьте ваш индивидуальный код
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-primary" style="width: 100%; padding: 20px;">
-                    Отправить заявку
-                </button>
-            </form>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3>BUZZLEAP</h3>
+                    <h3><img src="img/Logo" alt="BUZZLEAP" style="height: 36px; vertical-align: middle; margin-right: 10px;">BUZZLEAP</h3>
                     <p>
                         AI Automation Agency — автоматизируем бизнес-процессы с помощью искусственного интеллекта
                     </p>
-                    <div class="social-icons">
-                        <a href="#">📱</a>
-                        <a href="#">✉️</a>
-                        <a href="#">🔗</a>
-                    </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Услуги</h4>
                     <ul>
@@ -1819,27 +1821,26 @@
                         <li><a href="#cases">Кейсы</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Компания</h4>
                     <ul>
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#how-we-work">Как работаем</a></li>
-                        <li><a href="#contact">Контакты</a></li>
-                        <li><a href="#">Блог</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Контакты</h4>
                     <ul>
-                        <li><a href="/cdn-cgi/l/email-protection#365f5850597654434c4c5a53574618575f"><span class="__cf_email__" data-cfemail="7a13141c153a180f0000161f1b0a541b13">[email&#160;protected]</span></a></li>
-                        <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
-                        <li>Москва, Россия</li>
+                        <li><a href="tel:+79052615414">+7 905 261 54 14</a></li>
+                        <li><a href="mailto:buzzleapai@mail.ru">buzzleapai@mail.ru</a></li>
+                        <li><a href="https://t.me/buzzleapAI" target="_blank">Telegram канал</a></li>
+                        <li><a href="https://t.me/AIConsultant_BuzzLead_bot" target="_blank">AI-консультант (бот)</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2026 BUZZLEAP AI Automation Agency. Все права защищены.</p>
             </div>
@@ -1871,8 +1872,8 @@
                 this.y = y;
                 this.radius = radius;
                 this.color = color;
-                this.vx = (Math.random() - 0.5) / 3;
-                this.vy = (Math.random() - 0.5) / 3;
+                this.vx = (Math.random() - 0.5) / 9;
+                this.vy = (Math.random() - 0.5) / 9;
                 this.alpha = 0.225 + Math.random() * 0.225;
                 this.breaking = false;
                 this.breakParticles = [];
@@ -1913,10 +1914,10 @@
                 
                 // Keep minimum speed
                 const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                if (speed < 0.05) {
+                if (speed < 0.017) {
                     const angle = Math.random() * Math.PI * 2;
-                    this.vx = Math.cos(angle) * 0.05;
-                    this.vy = Math.sin(angle) * 0.05;
+                    this.vx = Math.cos(angle) * 0.017;
+                    this.vy = Math.sin(angle) * 0.017;
                 }
             }
             
@@ -2007,7 +2008,7 @@
                 
                 for (let i = 0; i < particleCount; i++) {
                     const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.5;
-                    const speed = 0.08 + Math.random() * 0.2;
+                    const speed = 0.027 + Math.random() * 0.067;
                     
                     this.breakParticles.push({
                         x: this.x,

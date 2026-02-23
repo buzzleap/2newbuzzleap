@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BUZZLEAP - AI Automation Agency | Автоматизация бизнеса</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         * {
             margin: 0;
@@ -1203,12 +1204,80 @@
             font-size: 14px;
         }
 
+        /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .burger-menu span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-nav-overlay.active {
+            display: flex;
+        }
+
+        .mobile-nav {
+            list-style: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .mobile-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            opacity: 0.7;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .services-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1219,13 +1288,29 @@
         }
 
         @media (max-width: 968px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .header-btn {
+                display: none;
+            }
+
+            .header-inner {
+                padding: 15px 20px;
+            }
+
             .hero {
                 min-height: auto;
                 padding: 0 20px;
             }
 
             .hero-content {
-                padding-top: 120px;
+                padding-top: 100px;
             }
 
             .hero h1 {
@@ -1244,39 +1329,153 @@
                 padding: 14px 24px;
                 font-size: 14px;
             }
-            
-            .section-title {
-                font-size: 42px;
+
+            .section {
+                padding: 60px 20px;
             }
-            
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .section-subtitle {
+                font-size: 16px;
+            }
+
             .pain-grid {
                 grid-template-columns: 1fr;
             }
-            
+
+            .pain-item {
+                padding: 30px;
+            }
+
+            .pain-content h3 {
+                font-size: 22px;
+            }
+
+            .calculator-section {
+                padding: 40px 20px;
+            }
+
             .calculator-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
-            
+
+            .result-main {
+                font-size: 48px;
+            }
+
+            .result-secondary {
+                font-size: 36px;
+            }
+
+            .calc-savings-title {
+                font-size: 32px;
+            }
+
+            .calc-savings-amount {
+                font-size: 40px;
+            }
+
+            .calc-savings-yearly {
+                font-size: 28px;
+            }
+
+            .case-card {
+                min-width: 300px;
+            }
+
+            .slider-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
+
+            .process-list {
+                padding-left: 0;
+            }
+
+            .process-list::before {
+                display: none;
+            }
+
+            .process-step {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+
+            .step-title {
+                font-size: 24px;
+            }
+
+            .step-desc {
+                font-size: 16px;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
+                gap: 30px;
             }
-            
-            .case-card {
-                min-width: 350px;
+
+            .cta-banner {
+                padding: 60px 30px;
+                margin: 60px 0;
+            }
+
+            .cta-banner h2 {
+                font-size: 36px;
+            }
+
+            .cta-banner p {
+                font-size: 18px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .mission-block {
+                padding: 30px 20px;
+            }
+
+            .mission-block h3 {
+                font-size: 24px;
+            }
+
+            .mission-block p {
+                font-size: 16px;
+            }
+
+            .stat-number {
+                font-size: 40px;
             }
         }
 
         @media (max-width: 640px) {
             .hero-content {
-                padding-top: 100px;
+                padding-top: 90px;
             }
 
             .hero h1 {
-                font-size: clamp(28px, 8vw, 38px);
+                font-size: clamp(24px, 7vw, 34px);
+                letter-spacing: -1px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+                margin: 15px auto 40px;
             }
 
             .hero-image-wrapper {
-                max-width: 442px;
+                max-width: 100%;
             }
 
             .hero-buttons {
@@ -1290,17 +1489,137 @@
                 padding: 12px 20px;
                 font-size: 13px;
             }
-            
+
+            .section-title {
+                font-size: 28px;
+            }
+
             .stats {
-                gap: 40px;
+                gap: 30px;
             }
-            
-            .nav {
-                display: none;
+
+            .stat-number {
+                font-size: 36px;
             }
-            
+
+            .stat-label {
+                font-size: 14px;
+            }
+
+            .pain-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .pain-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 36px;
+                border-radius: 16px;
+            }
+
+            .case-card {
+                min-width: 260px;
+            }
+
+            .case-image {
+                height: 180px;
+                font-size: 60px;
+            }
+
+            .case-body {
+                padding: 25px;
+            }
+
+            .case-title {
+                font-size: 20px;
+            }
+
+            .metric-value {
+                font-size: 28px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .member-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 48px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 30px 25px;
+            }
+
+            .service-icon {
+                font-size: 48px;
+            }
+
+            .service-title {
+                font-size: 22px;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .footer-brand h3 {
+                font-size: 22px;
+            }
+
+            .cta-banner {
+                padding: 40px 20px;
+                border-radius: 20px;
+                margin: 40px 0;
+            }
+
+            .cta-banner h2 {
+                font-size: 26px;
+            }
+
+            .cta-banner p {
+                font-size: 16px;
+            }
+
+            .result-main {
+                font-size: 36px;
+            }
+
+            .result-secondary {
+                font-size: 28px;
+            }
+
+            .calc-savings-title {
+                font-size: 24px;
+            }
+
+            .calc-savings-amount {
+                font-size: 32px;
+            }
+
+            .calc-savings-yearly {
+                font-size: 22px;
+            }
+
+            .contact-method-group {
+                flex-direction: column;
+            }
+
+            .solution-text {
+                font-size: 16px;
+            }
+
+            .g-recaptcha {
+                transform: scale(0.85);
+                transform-origin: 0 0;
             }
         }
     </style>
@@ -1324,7 +1643,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-inner">
-            <div class="logo"><img src="img/Logo.png" alt="BUZZLEAP" style="height: 32px; vertical-align: middle; margin-right: 8px; -webkit-text-fill-color: initial;">BUZZLEAP</div>
+            <div class="logo">BUZZLEAP</div>
             <ul class="nav">
                 <li><a href="#about">О нас</a></li>
                 <li><a href="#cases">Кейсы</a></li>
@@ -1334,8 +1653,26 @@
                 <li><a href="#footer">Контакты</a></li>
             </ul>
             <a href="#ai-calculation" class="header-btn" onclick="ym(105796040,'reachGoal','get_consultation_header')">Хочу консультацию с AI</a>
+            <div class="burger-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <ul class="mobile-nav">
+            <li><a href="#about" onclick="toggleMobileMenu()">О нас</a></li>
+            <li><a href="#cases" onclick="toggleMobileMenu()">Кейсы</a></li>
+            <li><a href="#services" onclick="toggleMobileMenu()">Услуги</a></li>
+            <li><a href="#solutions" onclick="toggleMobileMenu()">Готовые решения</a></li>
+            <li><a href="#how-we-work" onclick="toggleMobileMenu()">Этапы работы</a></li>
+            <li><a href="#footer" onclick="toggleMobileMenu()">Контакты</a></li>
+            <li><a href="#ai-calculation" onclick="toggleMobileMenu(); ym(105796040,'reachGoal','get_consultation_header')">Консультация с AI</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1533,13 +1870,9 @@
                     <input type="text" placeholder="@username">
                 </div>
 
-                <!-- Google reCAPTCHA — вставьте ваш site key -->
+                <!-- Google reCAPTCHA -->
                 <div id="recaptcha-container" style="margin-bottom: 20px;">
-                    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
-                    <!-- <div class="g-recaptcha" data-sitekey="ВАШ_SITE_KEY"></div> -->
-                    <div style="padding: 15px 20px; background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px; text-align: center; color: #9CA3AF; font-size: 14px;">
-                        reCAPTCHA — вставьте ваш индивидуальный код
-                    </div>
+                    <div class="g-recaptcha" data-sitekey="6LfcCXQsAAAAAH0KsqZvMBcaSv81yTfJFvYJj4s2"></div>
                 </div>
 
                 <button type="submit" class="btn-primary" style="width: 100%; padding: 20px;" onclick="ym(105796040,'reachGoal','free_consultation_last_block')">
@@ -1899,7 +2232,7 @@
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3><img src="img/Logo.png" alt="BUZZLEAP" style="height: 36px; vertical-align: middle; margin-right: 10px; -webkit-text-fill-color: initial;">BUZZLEAP</h3>
+                    <h3>BUZZLEAP</h3>
                     <p>
                         AI Automation Agency — автоматизируем бизнес-процессы с помощью искусственного интеллекта
                     </p>
@@ -1961,8 +2294,10 @@
                 this.y = y;
                 this.radius = radius;
                 this.color = color;
-                this.vx = (Math.random() - 0.5) / 9;
-                this.vy = (Math.random() - 0.5) / 9;
+                this.targetSpeed = 0.15 + Math.random() * 0.2;
+                var angle = Math.random() * Math.PI * 2;
+                this.vx = Math.cos(angle) * this.targetSpeed;
+                this.vy = Math.sin(angle) * this.targetSpeed;
                 this.alpha = 0.225 + Math.random() * 0.225;
                 this.breaking = false;
                 this.breakParticles = [];
@@ -1992,15 +2327,15 @@
                     this.vy *= -1;
                     this.y = Math.max(this.radius, Math.min(canvas.height - this.radius, this.y));
                 }
-                // Slow down slightly
-                this.vx *= Math.pow(0.999, delta);
-                this.vy *= Math.pow(0.999, delta);
-                // Keep minimum speed
+                // Maintain constant slow speed (no acceleration, no deceleration)
                 const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                if (speed < 0.017) {
+                if (speed > 0.001) {
+                    this.vx = (this.vx / speed) * this.targetSpeed;
+                    this.vy = (this.vy / speed) * this.targetSpeed;
+                } else {
                     const angle = Math.random() * Math.PI * 2;
-                    this.vx = Math.cos(angle) * 0.017;
-                    this.vy = Math.sin(angle) * 0.017;
+                    this.vx = Math.cos(angle) * this.targetSpeed;
+                    this.vy = Math.sin(angle) * this.targetSpeed;
                 }
             }
             updateBreaking(delta = 1) {
@@ -2258,6 +2593,15 @@
             });
         }
 
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            var burger = document.querySelector('.burger-menu');
+            var nav = document.getElementById('mobileNav');
+            burger.classList.toggle('active');
+            nav.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        }
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -2275,6 +2619,13 @@
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
+
+                    // Проверка reCAPTCHA
+                    var recaptchaResponse = grecaptcha.getResponse();
+                    if (!recaptchaResponse) {
+                        alert('Пожалуйста, подтвердите что вы не робот');
+                        return;
+                    }
 
                     var email = document.getElementById('email-input').value;
                     var phone = document.getElementById('phone-input').value;

@@ -6,6 +6,10 @@
     <title>BUZZLEAP - AI Automation Agency | Автоматизация бизнеса</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
+        html {
+            background-color: #080B14;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -20,7 +24,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-            background: #000;
+            background: transparent;
             color: #fff;
             overflow-x: hidden;
             position: relative;
@@ -31,9 +35,9 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
             opacity: 0.9;
             pointer-events: none;
         }
@@ -44,11 +48,12 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1002;
+            z-index: 1004;
             background: rgba(0, 0, 0, 0.9);
             -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease;
         }
 
         .header-inner {
@@ -105,6 +110,7 @@
         /* Hero Section */
         .hero {
             position: relative;
+            z-index: 1;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -279,6 +285,7 @@
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
+            z-index: 1;
         }
 
         .section-header {
@@ -1115,6 +1122,8 @@
 
         /* Footer */
         .footer {
+            position: relative;
+            z-index: 1;
             background: rgba(255, 255, 255, 0.02);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding: 80px 40px 40px;
@@ -1212,7 +1221,8 @@
             gap: 5px;
             cursor: pointer;
             padding: 5px;
-            z-index: 1001;
+            z-index: 1004;
+            position: relative;
         }
 
         .burger-menu span {
@@ -1236,7 +1246,6 @@
         }
 
         .mobile-nav-overlay {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -1245,13 +1254,18 @@
             background: rgba(0, 0, 0, 0.95);
             -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
-            z-index: 1001;
+            z-index: 1003;
+            display: flex;
             justify-content: center;
             align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .mobile-nav-overlay.active {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
         }
 
         .mobile-nav {
@@ -1259,8 +1273,27 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 28px;
         }
+
+        .mobile-nav li {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active .mobile-nav li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(1) { transition-delay: 0.05s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(2) { transition-delay: 0.1s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(3) { transition-delay: 0.15s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(4) { transition-delay: 0.2s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(5) { transition-delay: 0.25s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(6) { transition-delay: 0.3s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(7) { transition-delay: 0.35s; }
 
         .mobile-nav a {
             color: #fff;
@@ -1272,6 +1305,23 @@
 
         .mobile-nav a:hover {
             opacity: 0.7;
+        }
+
+        .mobile-nav-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            border-radius: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mobile-nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(74, 159, 245, 0.4);
         }
 
         /* Responsive */
@@ -1672,7 +1722,7 @@
             <li><a href="#solutions" onclick="toggleMobileMenu()">Готовые решения</a></li>
             <li><a href="#how-we-work" onclick="toggleMobileMenu()">Этапы работы</a></li>
             <li><a href="#footer" onclick="toggleMobileMenu()">Контакты</a></li>
-            <li><a href="#ai-calculation" onclick="toggleMobileMenu(); ym(105796040,'reachGoal','get_consultation_header')">Консультация с AI</a></li>
+            <li><a href="#ai-calculation" class="mobile-nav-btn" onclick="toggleMobileMenu(); ym(105796040,'reachGoal','get_consultation_header')">Хочу консультацию с AI</a></li>
         </ul>
     </div>
 
@@ -2425,9 +2475,10 @@
         }
         // Create spheres
         const spheres = [];
-        const sphereCount = Math.floor((canvas.width * canvas.height) / 50000);
+        const isMobile = window.innerWidth <= 968;
+        const sphereCount = Math.max(isMobile ? 4 : 6, Math.floor((canvas.width * canvas.height) / 50000));
         for (let i = 0; i < sphereCount; i++) {
-            const radius = 30 + Math.random() * 70;
+            const radius = isMobile ? (20 + Math.random() * 50) : (30 + Math.random() * 70);
             const x = radius + Math.random() * (canvas.width - radius * 2);
             const y = radius + Math.random() * (canvas.height - radius * 2);
             const color = colors[Math.floor(Math.random() * colors.length)];
@@ -2503,7 +2554,7 @@
             for (let i = spheres.length - 1; i >= 0; i--) {
                 if (spheres[i].breaking && spheres[i].breakParticles.length === 0) {
                     spheres.splice(i, 1);
-                    const radius = 30 + Math.random() * 70;
+                    const radius = isMobile ? (20 + Math.random() * 50) : (30 + Math.random() * 70);
                     const x = radius + Math.random() * (canvas.width - radius * 2);
                     const y = radius + Math.random() * (canvas.height - radius * 2);
                     const color = colors[Math.floor(Math.random() * colors.length)];
@@ -2599,9 +2650,15 @@
         function toggleMobileMenu() {
             var burger = document.querySelector('.burger-menu');
             var nav = document.getElementById('mobileNav');
+            var header = document.querySelector('.header');
             burger.classList.toggle('active');
             nav.classList.toggle('active');
-            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+            var isOpen = nav.classList.contains('active');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            header.style.background = isOpen ? 'transparent' : '';
+            header.style.borderBottom = isOpen ? 'none' : '';
+            header.style.backdropFilter = isOpen ? 'none' : '';
+            header.style.webkitBackdropFilter = isOpen ? 'none' : '';
         }
 
         // Smooth scroll

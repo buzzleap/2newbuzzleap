@@ -814,6 +814,146 @@
             font-size: 18px;
         }
 
+        /* Consulting Section */
+        .consulting-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .consulting-card {
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.03), rgba(157, 92, 232, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 50px 40px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .consulting-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .consulting-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .consulting-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(157, 92, 232, 0.3);
+        }
+
+        .consulting-card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .consulting-card-icon {
+            font-size: 72px;
+            margin-bottom: 20px;
+        }
+
+        .consulting-card-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .consulting-card-subtitle {
+            font-size: 16px;
+            color: #9CA3AF;
+            line-height: 1.6;
+        }
+
+        .consulting-card-pricing {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .consulting-card-pricing .badge-item {
+            padding: 8px 20px;
+            background: rgba(157, 92, 232, 0.1);
+            border: 1px solid rgba(157, 92, 232, 0.3);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #c9a0ff;
+        }
+
+        .consulting-card-desc {
+            color: #9CA3AF;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .consulting-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .consulting-card-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .consulting-card-features li {
+            padding: 8px 0;
+            color: #9CA3AF;
+            font-size: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .consulting-card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--buzz-purple);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .consulting-card-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 16px 36px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .consulting-card-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(157, 92, 232, 0.3);
+        }
+
+        .consulting-card-center {
+            text-align: center;
+        }
+
         /* Team Grid */
         .team-grid {
             display: grid;
@@ -1330,6 +1470,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .consulting-grid {
+                grid-template-columns: 1fr;
+            }
+
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1698,6 +1842,7 @@
             <div class="logo">BUZZLEAP</div>
             <ul class="nav">
                 <li><a href="#about">О нас</a></li>
+                <li><a href="#consulting">Консалтинг</a></li>
                 <li><a href="#cases">Кейсы</a></li>
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#solutions">Готовые решения</a></li>
@@ -1717,6 +1862,7 @@
     <div class="mobile-nav-overlay" id="mobileNav">
         <ul class="mobile-nav">
             <li><a href="#about" onclick="toggleMobileMenu()">О нас</a></li>
+            <li><a href="#consulting" onclick="toggleMobileMenu()">Консалтинг</a></li>
             <li><a href="#cases" onclick="toggleMobileMenu()">Кейсы</a></li>
             <li><a href="#services" onclick="toggleMobileMenu()">Услуги</a></li>
             <li><a href="#solutions" onclick="toggleMobileMenu()">Готовые решения</a></li>
@@ -1931,6 +2077,88 @@
                     Отправить заявку
                 </button>
             </form>
+        </div>
+    </section>
+
+    <!-- AI Consulting Section -->
+    <section class="section" id="consulting">
+        <div class="section-header">
+            <h2 class="section-title">
+                ИИ <span class="gradient">Консалтинг</span>
+            </h2>
+            <p class="section-subtitle">
+                Помогаем бизнесу внедрять искусственный интеллект эффективно
+            </p>
+        </div>
+
+        <div class="consulting-grid">
+            <div class="consulting-card">
+                <div class="consulting-card-header">
+                    <div class="consulting-card-icon">💡</div>
+                    <div class="consulting-card-title">Персональная консультация по внедрению ИИ</div>
+                </div>
+                <div class="consulting-card-pricing">
+                    <div class="badge-item">5 000 ₽</div>
+                    <div class="badge-item">45 минут</div>
+                </div>
+                <p class="consulting-card-desc">
+                    За 45 минут мы разберём ваши ключевые бизнес-процессы и определим, где искусственный интеллект даст максимальный эффект. Сделаете первый шаг к оптимизации процессов с ИИ
+                </p>
+                <h4>Что входит в консультацию:</h4>
+                <ul class="consulting-card-features">
+                    <li>Экспресс-анализ 2–3 ключевых процессов вашей компании</li>
+                    <li>Определение «узких мест», где AI даст наибольший эффект</li>
+                    <li>Рекомендации по конкретным инструментам и решениям</li>
+                    <li>Предварительная оценка сроков и бюджета внедрения</li>
+                    <li>Ответы на все ваши вопросы по теме AI в бизнесе</li>
+                </ul>
+                <h4>Что вы получите после:</h4>
+                <ul class="consulting-card-features">
+                    <li>Запись консультации (видео/аудио)</li>
+                    <li>Краткое резюме встречи с основными рекомендациями по автоматизации процессов (PDF)</li>
+                    <li>Понимание, стоит ли вам двигаться дальше в сторону AI-автоматизации</li>
+                </ul>
+                <div class="consulting-card-center">
+                    <a href="https://t.me/buzzleapAI#" target="_blank" class="consulting-card-btn">Записаться на консультацию</a>
+                </div>
+            </div>
+
+            <div class="consulting-card">
+                <div class="consulting-card-header">
+                    <div class="consulting-card-icon">📊</div>
+                    <div class="consulting-card-title">Аудит процессов</div>
+                    <div class="consulting-card-subtitle">7 решений для вашего бизнеса за 3 недели</div>
+                </div>
+                <div class="consulting-card-pricing">
+                    <div class="badge-item">От 100 000 ₽</div>
+                    <div class="badge-item">От 3 недель</div>
+                </div>
+                <p class="consulting-card-desc">
+                    Мы изучим ваши процессы изнутри: от регламентов и должностных инструкций до реального распорядка дня сотрудников. Результат — детальный отчёт с 7 процессами для автоматизации, расчётом экономии и пошаговым планом внедрения.
+                </p>
+                <h4>Что входит в аудит:</h4>
+                <ul class="consulting-card-features">
+                    <li>Анализ должностных инструкций, регламентов, процессов</li>
+                    <li>Интервью с ключевыми сотрудниками</li>
+                    <li>Хронометраж ключевых задач: сколько времени занимает, кто выполняет</li>
+                    <li>Анализ «узких мест» и точек потерь</li>
+                    <li>ТОП-7 процессов для автоматизации с приоритизацией</li>
+                    <li>Расчёт экономического эффекта по каждому процессу (часы, рубли)</li>
+                    <li>7 конкретных AI-решений с описанием инструментов и бюджетов</li>
+                    <li>Пошаговый план внедрения на 3 месяца</li>
+                </ul>
+                <h4>Что вы получите:</h4>
+                <ul class="consulting-card-features">
+                    <li>Итоговый отчёт с подробным описанием 7 AI-решений (PDF)</li>
+                    <li>Понимание, как реализовать и внедрить автоматизацию</li>
+                    <li>Финальная Zoom-презентация результатов</li>
+                    <li>Карта процессов «как есть» и «как будет» с AI</li>
+                    <li>Таблица приоритетов: что внедрить в первую очередь</li>
+                </ul>
+                <div class="consulting-card-center">
+                    <a href="https://t.me/buzzleapAI#" target="_blank" class="consulting-card-btn">Записаться на аудит</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2296,6 +2524,7 @@
                         <li><a href="#services">AI-агенты</a></li>
                         <li><a href="#services">Автоматизация</a></li>
                         <li><a href="#services">Собственный AI-продукт</a></li>
+                        <li><a href="#consulting">Консалтинг</a></li>
                         <li><a href="#cases">Кейсы</a></li>
                     </ul>
                 </div>

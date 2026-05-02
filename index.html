@@ -190,13 +190,26 @@
             white-space: nowrap;
         }
 
+        .hero-tagline {
+            position: relative;
+            z-index: 2;
+            font-size: clamp(20px, 2.2vw, 32px);
+            font-weight: 700;
+            color: #fff;
+            max-width: 760px;
+            margin: 32px auto 0;
+            line-height: 1.35;
+            text-align: center;
+            padding: 0 20px;
+        }
+
         .hero-subtitle {
             position: relative;
             z-index: 2;
             font-size: clamp(14px, 1.2vw, 20px);
             color: #9CA3AF;
             max-width: 700px;
-            margin: 20px auto 60px;
+            margin: 16px auto 60px;
             line-height: 1.6;
             text-align: center;
             padding: 0 20px;
@@ -1889,6 +1902,10 @@
                 <a href="#calculator" class="btn-secondary" onclick="ym(105796040,'reachGoal','calculate_losses_block_1')">Рассчитать экономию</a>
             </div>
         </div>
+
+        <p class="hero-tagline">
+            Освободим <span class="gradient">до 80% вашего времени</span>: автоматизируем рутину под ключ
+        </p>
 
         <p class="hero-subtitle">
             Подходит бизнесу, стартапам, предпринимателям и самозанятым, которым нужна предсказуемая автоматизация процессов и экономия до 60% расходов

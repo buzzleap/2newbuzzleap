@@ -744,6 +744,25 @@
             color: #9CA3AF;
         }
 
+        .case-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: auto;
+        }
+
+        .case-tag {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--buzz-blue);
+            background: rgba(74, 159, 245, 0.08);
+            border: 1px solid rgba(74, 159, 245, 0.2);
+            border-radius: 50px;
+            padding: 6px 14px;
+        }
+
         /* Process Steps */
         .process-list {
             display: flex;
@@ -2348,61 +2367,46 @@
             <button class="slider-btn slider-btn-next" onclick="scrollCases(1)">›</button>
             <div class="cases-slider" id="casesSlider">
                 <div class="case-card">
-                    <div class="case-image">🏪</div>
+                    <div class="case-image">🎙️</div>
                     <div class="case-body">
-                        <h3 class="case-title">Автоматизация интернет-магазина</h3>
+                        <h3 class="case-title">ИИ-ассистент руководителя</h3>
                         <p class="case-desc">
-                            Внедрили AI-агента для обработки заказов, консультации клиентов и управления складом
+                            Голосовой и текстовый помощник: принимает задачи голосом, записывает в календарь, присылает ежедневные сводки, напоминает о важном. Руководитель перестаёт держать всё в голове.
                         </p>
-                        <div class="case-metrics">
-                            <div class="metric">
-                                <div class="metric-value">-60%</div>
-                                <div class="metric-label">Расходы на операторов</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-value">+45%</div>
-                                <div class="metric-label">Скорость обработки</div>
-                            </div>
+                        <div class="case-tags">
+                            <span class="case-tag">✔ Запись задач голосом</span>
+                            <span class="case-tag">✔ Сводки и напоминания</span>
+                            <span class="case-tag">✔ Синхронизация с календарём</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="case-card">
-                    <div class="case-image">💇</div>
+                    <div class="case-image">✉️</div>
                     <div class="case-body">
-                        <h3 class="case-title">AI-ассистент для салона красоты</h3>
+                        <h3 class="case-title">Автоматическая персональная рассылка</h3>
                         <p class="case-desc">
-                            Умный бот для записи клиентов, напоминаний о визите и первичной консультации 24/7
+                            Автоматизация для онлайн-курса: система сама формирует индивидуальное письмо под каждого ученика по инструкции и отправляет его ежедневно в 12:00. Без участия руководителя.
                         </p>
-                        <div class="case-metrics">
-                            <div class="metric">
-                                <div class="metric-value">24/7</div>
-                                <div class="metric-label">Работа без выходных</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-value">+30%</div>
-                                <div class="metric-label">Больше записей</div>
-                            </div>
+                        <div class="case-tags">
+                            <span class="case-tag">✔ Индивидуальные письма</span>
+                            <span class="case-tag">✔ Ежедневный запуск</span>
+                            <span class="case-tag">✔ Ноль ручного труда</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="case-card">
                     <div class="case-image">📊</div>
                     <div class="case-body">
                         <h3 class="case-title">AI-бизнес аналитик</h3>
                         <p class="case-desc">
-                            Собирает данные со всех каналов бизнеса и еженедельно присылает отчет руководителю о результатах недели с рекомендациями по улучшению
+                            Собирает данные со всех каналов, еженедельно формирует отчёт с результатами и рекомендациями — и сам отправляет руководителю. Без запросов и ручного сбора.
                         </p>
-                        <div class="case-metrics">
-                            <div class="metric">
-                                <div class="metric-value">100%</div>
-                                <div class="metric-label">Автоматизация отчетов</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-value">-80%</div>
-                                <div class="metric-label">Время на анализ</div>
-                            </div>
+                        <div class="case-tags">
+                            <span class="case-tag">✔ Автоматические отчёты</span>
+                            <span class="case-tag">✔ Рекомендации по улучшению</span>
+                            <span class="case-tag">✔ Работает без участия</span>
                         </div>
                     </div>
                 </div>

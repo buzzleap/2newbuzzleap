@@ -591,26 +591,75 @@
             margin-top: 10px;
         }
 
+        .calc-benefit {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .calc-benefit-title {
+            font-size: clamp(15px, 1.2vw, 18px);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .calc-benefit-values {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .calc-benefit-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .calc-benefit-value {
+            font-size: clamp(22px, 2.2vw, 32px);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--buzz-blue), var(--buzz-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .calc-benefit-value.money {
+            background: linear-gradient(135deg, var(--buzz-pink), var(--buzz-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .calc-benefit-label {
+            font-size: 13px;
+            color: #9CA3AF;
+        }
+
+        .calc-benefit-divider {
+            font-size: 18px;
+            color: #6B7280;
+            padding-bottom: 20px;
+        }
+
         .calc-insight {
             margin-top: 60px;
             padding: 60px;
             background: linear-gradient(135deg, rgba(74, 159, 245, 0.05), rgba(157, 92, 232, 0.05));
             border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .calc-insight-title {
+            font-size: clamp(22px, 2.2vw, 32px);
+            font-weight: 800;
             text-align: center;
-        }
-
-        .calc-insight p {
-            font-size: clamp(16px, 1.4vw, 22px);
-            color: #D1D5DB;
-            line-height: 1.7;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .calc-insight p strong {
-            color: #fff;
-            font-weight: 700;
+            margin-bottom: 50px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Cases Slider */
@@ -2034,7 +2083,7 @@
         <div class="header-inner">
             <div class="logo">BUZZLEAP</div>
             <ul class="nav">
-                <li><a href="#about">О нас</a></li>
+                <li><a href="#about">Обо мне</a></li>
                 <li><a href="#consulting">Консалтинг</a></li>
                 <li><a href="#cases">Кейсы</a></li>
                 <li><a href="#services">Услуги</a></li>
@@ -2054,7 +2103,7 @@
     <!-- Mobile Navigation -->
     <div class="mobile-nav-overlay" id="mobileNav">
         <ul class="mobile-nav">
-            <li><a href="#about" onclick="toggleMobileMenu()">О нас</a></li>
+            <li><a href="#about" onclick="toggleMobileMenu()">Обо мне</a></li>
             <li><a href="#consulting" onclick="toggleMobileMenu()">Консалтинг</a></li>
             <li><a href="#cases" onclick="toggleMobileMenu()">Кейсы</a></li>
             <li><a href="#services" onclick="toggleMobileMenu()">Услуги</a></li>
@@ -2084,7 +2133,7 @@
         </div>
 
         <p class="hero-tagline">
-            Экономим <span class="gradient">от 50% времени</span> на рутинных задачах — или возвращаем деньги
+            Сэкономим <span class="gradient">от 50% времени</span> на рутинных задачах или вернём деньги
         </p>
 
         <p class="hero-subtitle">
@@ -2203,7 +2252,7 @@
                     </div>
                     <div class="calc-metric">
                         <div class="calc-metric-icon">⏱</div>
-                        <div class="calc-metric-value" id="time-year">396 часов</div>
+                        <div class="calc-metric-value" id="time-year">16 дней</div>
                         <div class="calc-metric-label">Сэкономлено времени в год</div>
                     </div>
                     <div class="calc-metric">
@@ -2218,15 +2267,63 @@
                 <div class="calc-savings-title">
                     Мы сэкономим вам <span>от 50% этого времени</span> с помощью автоматизации — или вернём деньги
                 </div>
+                <div class="calc-benefit">
+                    <div class="calc-benefit-title">Ваша выгода от работы с нами</div>
+                    <div class="calc-benefit-values">
+                        <div class="calc-benefit-item">
+                            <span class="calc-benefit-value" id="benefit-days">0 дней</span>
+                            <span class="calc-benefit-label">сэкономлено в год</span>
+                        </div>
+                        <div class="calc-benefit-divider">и</div>
+                        <div class="calc-benefit-item">
+                            <span class="calc-benefit-value money" id="benefit-money">0 ₽</span>
+                            <span class="calc-benefit-label">заработано в год</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="calc-insight">
-            <p>
-                <strong>Сэкономленное время — это не просто цифра.</strong><br>
-                Это время на стратегию. На новые проекты. На семью, отдых, путешествия.<br>
-                Автоматизация не отнимает бизнес — она возвращает вас в него.
-            </p>
+            <h3 class="calc-insight-title">Сэкономленное время — это не просто цифра</h3>
+            <div class="pain-grid">
+                <div class="pain-item">
+                    <div class="pain-header">
+                        <div class="pain-icon">🧠</div>
+                        <div class="pain-content">
+                            <h3>Это время на стратегию</h3>
+                        </div>
+                    </div>
+                    <p>Думать о развитии бизнеса, а не тонуть в ежедневной рутине</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-header">
+                        <div class="pain-icon">🚀</div>
+                        <div class="pain-content">
+                            <h3>Это время на новые проекты</h3>
+                        </div>
+                    </div>
+                    <p>Запускать идеи, которые давно ждут своей очереди</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-header">
+                        <div class="pain-icon">👨‍👩‍👧</div>
+                        <div class="pain-content">
+                            <h3>Это время на семью и друзей</h3>
+                        </div>
+                    </div>
+                    <p>Быть рядом с теми, кто важен, а не зависать в рабочих чатах</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-header">
+                        <div class="pain-icon">✈️</div>
+                        <div class="pain-content">
+                            <h3>Это время на отдых и путешествия</h3>
+                        </div>
+                    </div>
+                    <p>Восстанавливаться и вдохновляться, зная что бизнес работает без вас</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2600,7 +2697,8 @@
                     Автоматически собирает данные из CRM, маркетинга и финансов, объединяет их в единую панель и еженедельно показывает, где бизнес теряет деньги, а где растёт с рекомендациями по улучшению.
                 </p>
                 <div class="solution-pricing">
-                    <div class="badge-item">От 150 000 ₽</div>
+                    <div class="badge-item"><span class="price-old">от 150 000 ₽</span> от 105 000 ₽</div>
+                    <div class="badge-item price-discount">скидка 30%</div>
                     <div class="badge-item">От 21 дня</div>
                 </div>
                 <div class="case-tags" style="margin-top: 25px;">
@@ -2694,7 +2792,7 @@
         </div>
 
         <div class="about-more-btn">
-            <a href="https://t.me/buzzleapAI" target="_blank" class="btn-secondary">Подробнее обо мне →</a>
+            <a href="https://telegra.ph/Moya-istoriya-05-06-6" target="_blank" class="btn-secondary">Подробнее обо мне →</a>
         </div>
     </section>
 
@@ -2732,7 +2830,7 @@
                 <div class="footer-section">
                     <h4>Компания</h4>
                     <ul>
-                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#about">Обо мне</a></li>
                         <li><a href="#how-we-work">Как работаем</a></li>
                     </ul>
                 </div>
@@ -2743,6 +2841,7 @@
                         <li><a href="tel:+79052615414">+7 905 261 54 14</a></li>
                         <li><a href="mailto:buzzleapai@mail.ru">buzzleapai@mail.ru</a></li>
                         <li><a href="https://t.me/buzzleapAI" target="_blank">Telegram</a></li>
+                        <li><a href="https://t.me/buzz_leap" target="_blank">Telegram-канал</a></li>
                         <li><a href="https://t.me/AIConsultant_BuzzLeap_bot" target="_blank">AI-консультант</a></li>
                     </ul>
                 </div>
@@ -3013,17 +3112,25 @@
             const savedPerDay = routineHours * 0.5;
             const savedMonthHours = Math.round(savedPerDay * 22);
             const savedYearHours = savedMonthHours * 12;
+            const savedYearDays = Math.floor(savedYearHours / 24);
             const moneyMonth = Math.round(savedMonthHours * hourlyRate);
             const moneyYear = moneyMonth * 12;
+
+            const benefitDays = Math.floor(savedYearDays * 0.5);
+            const benefitMoney = Math.round(moneyYear * 0.5);
 
             document.getElementById('time-month').textContent =
                 savedMonthHours.toLocaleString('ru-RU') + ' часов';
             document.getElementById('money-month').textContent =
                 moneyMonth.toLocaleString('ru-RU') + ' ₽';
             document.getElementById('time-year').textContent =
-                savedYearHours.toLocaleString('ru-RU') + ' часов';
+                savedYearDays.toLocaleString('ru-RU') + ' дней';
             document.getElementById('money-year').textContent =
                 moneyYear.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('benefit-days').textContent =
+                'от ' + benefitDays.toLocaleString('ru-RU') + ' дней';
+            document.getElementById('benefit-money').textContent =
+                'от ' + benefitMoney.toLocaleString('ru-RU') + ' ₽';
         }
 
         document.addEventListener('DOMContentLoaded', calculateTime);

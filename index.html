@@ -1,0 +1,3347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUZZLEAP - AI Automation Agency | Автоматизация бизнеса</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        html {
+            background-color: #080B14;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --buzz-blue: #4A9FF5;
+            --buzz-purple: #9D5CE8;
+            --buzz-pink: #FF4B7F;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: transparent;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        #animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1004;
+            background: rgba(0, 0, 0, 0.9);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            transition: opacity 0.3s;
+        }
+
+        .nav a:hover {
+            opacity: 0.7;
+        }
+
+        .header-btn {
+            padding: 12px 28px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            padding: 0 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 1200px;
+            height: 1200px;
+            background: radial-gradient(circle, rgba(157, 92, 232, 0.1), transparent 70%);
+            top: -600px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+            padding-top: 140px;
+        }
+
+        .hero h1 {
+            font-size: clamp(29px, 4.4vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            max-width: 1000px;
+            margin: 0 auto;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 780px;
+            margin-top: 30px;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-image-fade {
+            position: absolute;
+            bottom: 0;
+            left: -30%;
+            right: -30%;
+            height: 60%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 35%, rgba(0,0,0,0.8) 65%, #000 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-buttons {
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 20px;
+            white-space: nowrap;
+        }
+
+        .hero-tagline {
+            position: relative;
+            z-index: 2;
+            font-size: clamp(20px, 2.2vw, 32px);
+            font-weight: 700;
+            color: #fff;
+            max-width: 760px;
+            margin: 32px auto 0;
+            line-height: 1.35;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-subtitle {
+            position: relative;
+            z-index: 2;
+            font-size: clamp(14px, 1.2vw, 20px);
+            color: #9CA3AF;
+            max-width: 700px;
+            margin: 16px auto 60px;
+            line-height: 1.6;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 14px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .btn-primary {
+            padding: 18px 40px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(157, 92, 232, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 18px 40px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--buzz-purple);
+            background: rgba(157, 92, 232, 0.1);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #9CA3AF;
+        }
+
+        /* Section */
+        .section {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #9CA3AF;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Pain Points Grid */
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .pain-item {
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.03), rgba(157, 92, 232, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 50px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pain-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .pain-item:hover::before {
+            opacity: 1;
+        }
+
+        .pain-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(157, 92, 232, 0.2);
+            box-shadow: 0 20px 60px rgba(157, 92, 232, 0.1);
+        }
+
+        .pain-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .pain-icon {
+            font-size: 48px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.1), rgba(157, 92, 232, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .pain-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .pain-content p {
+            color: #9CA3AF;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .solution-arrow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .arrow-icon {
+            display: none;
+        }
+
+        .solution-text {
+            color: #fff;
+            font-weight: 700;
+            font-size: 20px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.4;
+        }
+
+        /* Calculator */
+        .calculator-section {
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.05), rgba(157, 92, 232, 0.05));
+            border-radius: 30px;
+            padding: 80px 60px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .calc-form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form-field label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .form-field input {
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .form-field input:focus {
+            outline: none;
+            border-color: var(--buzz-purple);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .calc-result {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .result-main {
+            font-size: 72px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--buzz-pink), var(--buzz-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .result-label {
+            font-size: 18px;
+            color: #9CA3AF;
+            margin-bottom: 40px;
+        }
+
+        .result-secondary {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--buzz-blue);
+            margin-bottom: 10px;
+        }
+
+        .solution-pricing {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .solution-pricing .badge-item {
+            padding: 10px 20px;
+            background: rgba(157, 92, 232, 0.1);
+            border-radius: 20px;
+            color: var(--buzz-purple);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .calc-metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .calc-metric {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            padding: 36px 28px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .calc-metric-icon {
+            font-size: 28px;
+        }
+
+        .calc-metric-value {
+            font-size: clamp(28px, 3vw, 44px);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--buzz-pink), var(--buzz-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .calc-metric-value.money {
+            background: linear-gradient(135deg, var(--buzz-blue), var(--buzz-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .calc-metric-label {
+            font-size: 14px;
+            color: #9CA3AF;
+            line-height: 1.4;
+        }
+
+        .calc-savings {
+            margin-top: 40px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(74, 159, 245, 0.2);
+        }
+
+        .calc-savings-title {
+            font-size: clamp(18px, 1.8vw, 24px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .calc-savings-title span {
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .calc-time-value {
+            display: block;
+            font-size: clamp(22px, 2vw, 32px);
+            font-weight: 800;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .calc-benefit {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .calc-benefit-title {
+            font-size: clamp(15px, 1.2vw, 18px);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .calc-benefit-values {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .calc-benefit-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .calc-benefit-value {
+            font-size: clamp(22px, 2.2vw, 32px);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--buzz-blue), var(--buzz-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .calc-benefit-value.money {
+            background: linear-gradient(135deg, var(--buzz-pink), var(--buzz-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .calc-benefit-label {
+            font-size: 13px;
+            color: #9CA3AF;
+        }
+
+        .calc-benefit-divider {
+            font-size: 18px;
+            color: #6B7280;
+            padding-bottom: 20px;
+        }
+
+        .calc-insight {
+            margin-top: 60px;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.05), rgba(157, 92, 232, 0.05));
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .calc-insight-title {
+            font-size: clamp(22px, 2.2vw, 32px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Cases Slider */
+        .cases-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--buzz-blue), var(--buzz-purple));
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 32px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(157, 92, 232, 0.3);
+        }
+
+        .slider-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 15px 40px rgba(157, 92, 232, 0.5);
+        }
+
+        .slider-btn-prev {
+            left: 20px;
+        }
+
+        .slider-btn-next {
+            right: 20px;
+        }
+
+        .cases-slider {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+        }
+
+        .cases-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .case-card {
+            min-width: 450px;
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.03), rgba(157, 92, 232, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            transition: all 0.3s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(157, 92, 232, 0.15);
+            border-color: rgba(157, 92, 232, 0.3);
+        }
+
+        .case-image {
+            height: 280px;
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.2), rgba(157, 92, 232, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(74, 159, 245, 0.3), transparent 60%);
+        }
+
+        .case-body {
+            padding: 40px;
+        }
+
+        .case-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .case-desc {
+            color: #9CA3AF;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .case-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #9CA3AF;
+        }
+
+        .case-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: auto;
+        }
+
+        .case-tag {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--buzz-blue);
+            background: rgba(74, 159, 245, 0.08);
+            border: 1px solid rgba(74, 159, 245, 0.2);
+            border-radius: 50px;
+            padding: 6px 14px;
+        }
+
+        /* Process Steps */
+        .process-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .process-list::before {
+            content: '';
+            position: absolute;
+            left: 39px;
+            top: 60px;
+            bottom: 60px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            opacity: 0.3;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--buzz-blue), var(--buzz-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 10px 40px rgba(157, 92, 232, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content {
+            padding-top: 10px;
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .step-desc {
+            font-size: 18px;
+            color: #9CA3AF;
+            line-height: 1.7;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.03), rgba(157, 92, 232, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(157, 92, 232, 0.3);
+        }
+
+        .service-icon {
+            font-size: 72px;
+            margin-bottom: 30px;
+        }
+
+        .service-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .service-desc {
+            color: #9CA3AF;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .service-features li {
+            padding: 12px 0;
+            color: #9CA3AF;
+            font-size: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--buzz-purple);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Consulting Section */
+        .consulting-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .consulting-card {
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.03), rgba(157, 92, 232, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 50px 40px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .consulting-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .consulting-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .consulting-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(157, 92, 232, 0.3);
+        }
+
+        .consulting-card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .consulting-card-icon {
+            font-size: 72px;
+            margin-bottom: 20px;
+        }
+
+        .consulting-card-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .consulting-card-subtitle {
+            font-size: 16px;
+            color: #9CA3AF;
+            line-height: 1.6;
+        }
+
+        .consulting-card-pricing {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .consulting-card-pricing .badge-item {
+            padding: 8px 20px;
+            background: rgba(157, 92, 232, 0.1);
+            border: 1px solid rgba(157, 92, 232, 0.3);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #c9a0ff;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            opacity: 0.5;
+            font-weight: 400;
+            margin-right: 4px;
+        }
+
+        .price-discount {
+            background: rgba(74, 159, 245, 0.12) !important;
+            border-color: rgba(74, 159, 245, 0.3) !important;
+            color: var(--buzz-blue) !important;
+        }
+
+        .consulting-card-diff {
+            color: #9CA3AF;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--buzz-purple);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .consulting-card-diff strong {
+            color: #D1D5DB;
+        }
+
+        .consulting-card-note {
+            color: #6B7280;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .consulting-card-promo {
+            margin: 24px 0 20px;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.1), rgba(157, 92, 232, 0.1));
+            border: 1px solid rgba(74, 159, 245, 0.3);
+            border-radius: 14px;
+            font-size: 15px;
+            color: #D1D5DB;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .consulting-card-promo strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .consulting-card-desc {
+            color: #9CA3AF;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .consulting-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .consulting-card-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .consulting-card-features li {
+            padding: 8px 0;
+            color: #9CA3AF;
+            font-size: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .consulting-card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--buzz-purple);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .consulting-card-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 16px 36px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .consulting-card-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(157, 92, 232, 0.3);
+        }
+
+        .consulting-card-center {
+            text-align: center;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .member-avatar {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, var(--buzz-blue), var(--buzz-purple));
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            box-shadow: 0 20px 60px rgba(157, 92, 232, 0.3);
+        }
+
+        .member-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .member-role {
+            color: var(--buzz-purple);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .member-bio {
+            color: #9CA3AF;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .about-bio {
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.05), rgba(157, 92, 232, 0.08));
+            border: 1px solid rgba(157, 92, 232, 0.2);
+            border-radius: 24px;
+            padding: 60px;
+            margin-bottom: 60px;
+        }
+
+        .about-bio p {
+            font-size: clamp(16px, 1.3vw, 19px);
+            color: #D1D5DB;
+            line-height: 1.8;
+            max-width: 820px;
+            margin: 0 auto 24px;
+        }
+
+        .about-bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-principles-title {
+            font-size: clamp(22px, 2vw, 28px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-more-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .mission-block {
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.05), rgba(157, 92, 232, 0.08));
+            border: 1px solid rgba(157, 92, 232, 0.2);
+            border-radius: 24px;
+            padding: 60px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .mission-block h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mission-block p {
+            font-size: 20px;
+            color: #9CA3AF;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.03), rgba(157, 92, 232, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(157, 92, 232, 0.3);
+        }
+
+        .value-card .value-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .value-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .value-card p {
+            font-size: 15px;
+            color: #9CA3AF;
+            line-height: 1.6;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            border-radius: 30px;
+            padding: 100px 60px;
+            text-align: center;
+            margin: 120px 0;
+        }
+
+        .cta-banner h2 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .cta-banner p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-banner .btn-primary {
+            background: #fff;
+            color: var(--buzz-purple);
+            font-size: 18px;
+            padding: 20px 50px;
+        }
+
+        .cta-banner .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Form */
+        /* Success Modal */
+        .success-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-modal-overlay.active {
+            display: flex;
+        }
+
+        .success-modal {
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.98), rgba(30, 20, 40, 0.98));
+            border: 1px solid rgba(157, 92, 232, 0.3);
+            border-radius: 30px;
+            padding: 60px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .success-modal .success-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .success-modal h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .success-modal p {
+            color: #9CA3AF;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .success-modal .btn-telegram {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .success-modal .btn-telegram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(157, 92, 232, 0.3);
+        }
+
+        .success-modal .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #9CA3AF;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .success-modal .close-modal:hover {
+            color: #fff;
+        }
+        .contact-offer {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.08), rgba(157, 92, 232, 0.08));
+            border: 1px solid rgba(74, 159, 245, 0.25);
+            border-radius: 24px;
+            padding: 36px 40px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .contact-timer {
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .contact-timer-display {
+            font-size: 52px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .contact-timer-label {
+            font-size: 12px;
+            color: #9CA3AF;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-offer-text {
+            font-size: clamp(14px, 1.2vw, 17px);
+            color: #D1D5DB;
+            line-height: 1.6;
+        }
+
+        .contact-offer-text strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(74, 159, 245, 0.03), rgba(157, 92, 232, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            padding: 60px;
+        }
+
+        .contact-form .form-field {
+            margin-bottom: 30px;
+        }
+
+        .contact-form textarea {
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            min-height: 150px;
+            resize: vertical;
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--buzz-purple);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-method-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .contact-method-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 15px;
+            font-weight: 400;
+            color: #9CA3AF;
+        }
+
+        .contact-method-group label:has(input:checked) {
+            border-color: var(--buzz-purple);
+            background: rgba(157, 92, 232, 0.1);
+            color: #fff;
+        }
+
+        .contact-method-group input[type="radio"] {
+            accent-color: var(--buzz-purple);
+            width: 18px;
+            height: 18px;
+        }
+
+        .conditional-field {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .conditional-field.active {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 80px 40px 40px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-size: 28px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple), var(--buzz-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .footer-brand p {
+            color: #9CA3AF;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 22px;
+        }
+
+        .social-icons a:hover {
+            background: linear-gradient(135deg, var(--buzz-blue), var(--buzz-purple));
+            transform: translateY(-3px);
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+
+        .footer-section a:hover {
+            color: var(--buzz-purple);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #9CA3AF;
+            font-size: 14px;
+        }
+
+        /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1004;
+            position: relative;
+        }
+
+        .burger-menu span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            z-index: 1003;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav {
+            list-style: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .mobile-nav li {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active .mobile-nav li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(1) { transition-delay: 0.05s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(2) { transition-delay: 0.1s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(3) { transition-delay: 0.15s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(4) { transition-delay: 0.2s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(5) { transition-delay: 0.25s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(6) { transition-delay: 0.3s; }
+        .mobile-nav-overlay.active .mobile-nav li:nth-child(7) { transition-delay: 0.35s; }
+
+        .mobile-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            opacity: 0.7;
+        }
+
+        .mobile-nav-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(90deg, var(--buzz-blue), var(--buzz-purple));
+            border-radius: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mobile-nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(74, 159, 245, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .consulting-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .header-btn {
+                display: none;
+            }
+
+            .header-inner {
+                padding: 15px 20px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 0 20px;
+            }
+
+            .hero-content {
+                padding-top: 100px;
+            }
+
+            .hero h1 {
+                font-size: clamp(26px, 4.8vw, 38px);
+            }
+
+            .hero-image-wrapper {
+                max-width: 585px;
+            }
+
+            .hero-buttons {
+                gap: 12px;
+            }
+
+            .hero-buttons a {
+                padding: 14px 24px;
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .section-subtitle {
+                font-size: 16px;
+            }
+
+            .pain-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pain-item {
+                padding: 30px;
+            }
+
+            .pain-content h3 {
+                font-size: 22px;
+            }
+
+            .calculator-section {
+                padding: 40px 20px;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .calc-metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .calc-insight {
+                padding: 40px 24px;
+            }
+
+            .case-card {
+                min-width: 300px;
+            }
+
+            .slider-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
+
+            .process-list {
+                padding-left: 0;
+            }
+
+            .process-list::before {
+                display: none;
+            }
+
+            .process-step {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+
+            .step-title {
+                font-size: 24px;
+            }
+
+            .step-desc {
+                font-size: 16px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+
+            .cta-banner {
+                padding: 60px 30px;
+                margin: 60px 0;
+            }
+
+            .cta-banner h2 {
+                font-size: 36px;
+            }
+
+            .cta-banner p {
+                font-size: 18px;
+            }
+
+            .contact-offer {
+                flex-direction: column;
+                padding: 28px 24px;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .mission-block {
+                padding: 30px 20px;
+            }
+
+            .mission-block h3 {
+                font-size: 24px;
+            }
+
+            .mission-block p {
+                font-size: 16px;
+            }
+
+            .stat-number {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content {
+                padding-top: 90px;
+            }
+
+            .hero h1 {
+                font-size: clamp(19px, 5.6vw, 27px);
+                letter-spacing: -1px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+                margin: 15px auto 40px;
+            }
+
+            .hero-image-wrapper {
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                bottom: 8%;
+            }
+
+            .hero-buttons a {
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+
+            .stat-label {
+                font-size: 14px;
+            }
+
+            .pain-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .pain-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 36px;
+                border-radius: 16px;
+            }
+
+            .case-card {
+                min-width: 260px;
+            }
+
+            .case-image {
+                height: 180px;
+                font-size: 60px;
+            }
+
+            .case-body {
+                padding: 25px;
+            }
+
+            .case-title {
+                font-size: 20px;
+            }
+
+            .metric-value {
+                font-size: 28px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .member-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 48px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 30px 25px;
+            }
+
+            .service-icon {
+                font-size: 48px;
+            }
+
+            .service-title {
+                font-size: 22px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .footer-brand h3 {
+                font-size: 22px;
+            }
+
+            .cta-banner {
+                padding: 40px 20px;
+                border-radius: 20px;
+                margin: 40px 0;
+            }
+
+            .cta-banner h2 {
+                font-size: 26px;
+            }
+
+            .cta-banner p {
+                font-size: 16px;
+            }
+
+            .result-main {
+                font-size: 36px;
+            }
+
+            .calc-metrics-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .calc-metric {
+                padding: 24px 16px;
+            }
+
+            .contact-method-group {
+                flex-direction: column;
+            }
+
+            .solution-text {
+                font-size: 16px;
+            }
+
+            .g-recaptcha {
+                transform: scale(0.85);
+                transform-origin: 0 0;
+            }
+        }
+    </style>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105796040', 'ym');
+        ym(105796040, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/105796040" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <!-- Animated Background -->
+    <canvas id="animated-bg"></canvas>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">BUZZLEAP</div>
+            <ul class="nav">
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#consulting">Консалтинг</a></li>
+                <li><a href="#cases">Кейсы</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#solutions">Готовые решения</a></li>
+                <li><a href="#how-we-work">Этапы работы</a></li>
+                <li><a href="#footer">Контакты</a></li>
+            </ul>
+            <a href="#ai-calculation" class="header-btn" onclick="ym(105796040,'reachGoal','get_consultation_header')">Хочу консультацию с AI</a>
+            <div class="burger-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <ul class="mobile-nav">
+            <li><a href="#about" onclick="toggleMobileMenu()">Обо мне</a></li>
+            <li><a href="#consulting" onclick="toggleMobileMenu()">Консалтинг</a></li>
+            <li><a href="#cases" onclick="toggleMobileMenu()">Кейсы</a></li>
+            <li><a href="#services" onclick="toggleMobileMenu()">Услуги</a></li>
+            <li><a href="#solutions" onclick="toggleMobileMenu()">Готовые решения</a></li>
+            <li><a href="#how-we-work" onclick="toggleMobileMenu()">Этапы работы</a></li>
+            <li><a href="#footer" onclick="toggleMobileMenu()">Контакты</a></li>
+            <li><a href="#ai-calculation" class="mobile-nav-btn" onclick="toggleMobileMenu(); ym(105796040,'reachGoal','get_consultation_header')">Хочу консультацию с AI</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Сэкономим <span class="gradient">от 50% времени</span><br>на рутинных задачах <span class="gradient">или вернём деньги</span>
+            </h1>
+        </div>
+
+        <div class="hero-image-wrapper">
+            <img src="img/Woman2.png" alt="AI Automation Expert">
+            <div class="hero-image-fade"></div>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary" onclick="ym(105796040,'reachGoal','get_guide_block_1')">Оставить заявку</a>
+                <a href="#calculator" class="btn-secondary" onclick="ym(105796040,'reachGoal','calculate_losses_block_1')">Рассчитать экономию</a>
+            </div>
+        </div>
+
+        <p class="hero-tagline">
+            Автоматизация процессов и разработка <span class="gradient">AI-агентов</span> от 3 дней
+        </p>
+
+        <p class="hero-subtitle">
+            Подходит бизнесу, стартапам, предпринимателям и самозанятым, которым нужна бизнес система и оптимизация затрат
+        </p>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">
+                Вы руководите бизнесом — но всё равно <br>
+                <span class="gradient">делаете это руками</span>
+            </h2>
+            <p class="section-subtitle">Каждый день вы тратите часы на задачи, которые давно должны работать без вас</p>
+        </div>
+        
+        <div class="pain-grid">
+            <div class="pain-item">
+                <div class="pain-header">
+                    <div class="pain-icon">⏱️</div>
+                    <div class="pain-content">
+                        <h3>Сотрудники тратят время на рутину</h3>
+                    </div>
+                </div>
+                <p>Ваша команда постоянно отвечает на одни и те же вопросы, обрабатывает заявки вручную</p>
+                <div class="solution-arrow">
+                    <div class="arrow-icon">→</div>
+                    <div class="solution-text">AI-агенты автоматизируют до 80% рутины</div>
+                </div>
+            </div>
+            
+            <div class="pain-item">
+                <div class="pain-header">
+                    <div class="pain-icon">💸</div>
+                    <div class="pain-content">
+                        <h3>Высокие затраты на персонал</h3>
+                    </div>
+                </div>
+                <p>Расходы на зарплаты операторов и менеджеров растут, а эффективность остается прежней</p>
+                <div class="solution-arrow">
+                    <div class="arrow-icon">→</div>
+                    <div class="solution-text">Сокращаем расходы на 20-60%</div>
+                </div>
+            </div>
+            
+            <div class="pain-item">
+                <div class="pain-header">
+                    <div class="pain-icon">🤝</div>
+                    <div class="pain-content">
+                        <h3>Ошибки и простои</h3>
+                    </div>
+                </div>
+                <p>Человеческий фактор приводит к потере данных и срыву сроков</p>
+                <div class="solution-arrow">
+                    <div class="arrow-icon">→</div>
+                    <div class="solution-text">Устранение ошибок с автоматизированными процессами до 99%</div>
+                </div>
+            </div>
+            
+            <div class="pain-item">
+                <div class="pain-header">
+                    <div class="pain-icon">❌</div>
+                    <div class="pain-content">
+                        <h3>Упущенная прибыль</h3>
+                    </div>
+                </div>
+                <p>Теряете заявки вечером и в выходные из-за отсутствия круглосуточной поддержки</p>
+                <div class="solution-arrow">
+                    <div class="arrow-icon">→</div>
+                    <div class="solution-text">AI работает 24/7 без выходных и отпусков</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="section" id="calculator">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="gradient">Калькулятор</span> вашего времени
+            </h2>
+            <p class="section-subtitle">
+                Посчитайте, сколько времени и денег вы вернёте с автоматизацией
+            </p>
+        </div>
+
+        <div class="calculator-section">
+            <div class="calculator-grid">
+                <div class="calc-form">
+                    <div class="form-field">
+                        <label>Сколько вы зарабатываете в час (₽)</label>
+                        <input type="number" id="hourly-rate" value="2000" placeholder="2000" oninput="calculateTime()">
+                    </div>
+
+                    <div class="form-field">
+                        <label>Сколько часов в день уходит на рутину</label>
+                        <input type="number" id="routine-hours" value="3" placeholder="3" oninput="calculateTime()">
+                    </div>
+
+                    <button class="btn-primary" onclick="calculateTime()" style="width: 100%; padding: 20px;">
+                        Рассчитать
+                    </button>
+                </div>
+
+                <div class="calc-metrics-grid">
+                    <div class="calc-metric">
+                        <div class="calc-metric-icon">⏱</div>
+                        <div class="calc-metric-value" id="time-month">33 часа</div>
+                        <div class="calc-metric-label">Сэкономлено времени в месяц</div>
+                    </div>
+                    <div class="calc-metric">
+                        <div class="calc-metric-icon">💰</div>
+                        <div class="calc-metric-value money" id="money-month">66 000 ₽</div>
+                        <div class="calc-metric-label">Заработаете на этом в месяц</div>
+                    </div>
+                    <div class="calc-metric">
+                        <div class="calc-metric-icon">⏱</div>
+                        <div class="calc-metric-value" id="time-year">396 часов</div>
+                        <div class="calc-metric-label">Сэкономлено времени в год</div>
+                    </div>
+                    <div class="calc-metric">
+                        <div class="calc-metric-icon">💰</div>
+                        <div class="calc-metric-value money" id="money-year">792 000 ₽</div>
+                        <div class="calc-metric-label">Заработаете на этом в год</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-savings">
+                <div class="calc-savings-title">
+                    Мы сэкономим вам <span>от 50% этого времени</span> с помощью автоматизации — или вернём деньги
+                </div>
+                <div class="calc-benefit">
+                    <div class="calc-benefit-title">Ваша выгода от работы с нами</div>
+                    <div class="calc-benefit-values">
+                        <div class="calc-benefit-item">
+                            <span class="calc-benefit-value" id="benefit-days">0 часов</span>
+                            <span class="calc-benefit-label">сэкономлено в год</span>
+                        </div>
+                        <div class="calc-benefit-divider">и</div>
+                        <div class="calc-benefit-item">
+                            <span class="calc-benefit-value money" id="benefit-money">0 ₽</span>
+                            <span class="calc-benefit-label">заработано в год</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-insight">
+            <h3 class="calc-insight-title">Сэкономленное время — это не просто цифра</h3>
+            <div class="pain-grid">
+                <div class="pain-item">
+                    <div class="pain-header">
+                        <div class="pain-icon">🧠</div>
+                        <div class="pain-content">
+                            <h3>Это время на стратегию</h3>
+                        </div>
+                    </div>
+                    <p>Думать о развитии бизнеса, а не тонуть в ежедневной рутине</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-header">
+                        <div class="pain-icon">🚀</div>
+                        <div class="pain-content">
+                            <h3>Это время на новые проекты</h3>
+                        </div>
+                    </div>
+                    <p>Запускать идеи, которые давно ждут своей очереди</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-header">
+                        <div class="pain-icon">👨‍👩‍👧</div>
+                        <div class="pain-content">
+                            <h3>Это время на семью и друзей</h3>
+                        </div>
+                    </div>
+                    <p>Быть рядом с теми, кто важен, а не зависать в рабочих чатах</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-header">
+                        <div class="pain-icon">✈️</div>
+                        <div class="pain-content">
+                            <h3>Это время на отдых и путешествия</h3>
+                        </div>
+                    </div>
+                    <p>Восстанавливаться и вдохновляться, зная что бизнес работает без вас</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section" id="contact">
+        <div class="section-header">
+            <h2 class="section-title">
+                Оставьте <span class="gradient">заявку</span>
+            </h2>
+            <p class="section-subtitle">
+                Мы свяжемся с вами в течение 2 часов
+            </p>
+        </div>
+
+        <div class="contact-offer">
+            <div class="contact-timer">
+                <div class="contact-timer-display" id="countdown-timer">15:00</div>
+                <div class="contact-timer-label">до конца предложения</div>
+            </div>
+            <div class="contact-offer-text">
+                🎁 <strong>Оставьте заявку прямо сейчас</strong> — и получите бесплатную 15-минутную диагностику в подарок. Разберём ваши процессы и через 24 часа пришлём конкретный план автоматизации.
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <form>
+                <div class="form-field">
+                    <label>Email *</label>
+                    <input type="email" id="email-input" placeholder="ivan@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" title="Введите корректный email, например: ivan@company.com" required>
+                </div>
+
+                <div class="form-field">
+                    <label>Телефон *</label>
+                    <input type="tel" id="phone-input" placeholder="8XXXXXXXXXX" pattern="8[0-9]{10}" title="Номер должен начинаться с 8 и содержать 11 цифр" required>
+                </div>
+
+                <div class="form-field">
+                    <label>Как с вами связаться? *</label>
+                    <div class="contact-method-group">
+                        <label>
+                            <input type="radio" name="contact_method" value="phone" checked onchange="toggleContactField(this.value)">
+                            Позвонить по телефону
+                        </label>
+                        <label>
+                            <input type="radio" name="contact_method" value="telegram" onchange="toggleContactField(this.value)">
+                            Написать в Telegram
+                        </label>
+                        <label>
+                            <input type="radio" name="contact_method" value="whatsapp" onchange="toggleContactField(this.value)">
+                            Написать в WhatsApp
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-field conditional-field active" id="field-phone">
+                    <label>Во сколько вам позвонить?</label>
+                    <input type="text" placeholder="Например: 14:00" style="padding: 18px 24px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: #fff; font-size: 16px; width: 100%; box-sizing: border-box;">
+                </div>
+
+                <div class="form-field conditional-field" id="field-telegram">
+                    <label>Ваш Telegram</label>
+                    <input type="text" placeholder="@username">
+                </div>
+
+                <!-- Google reCAPTCHA -->
+                <div id="recaptcha-container" style="margin-bottom: 20px;">
+                    <div class="g-recaptcha" data-sitekey="6LfwxR4sAAAAAByNKo-7zLr4W8fb-n3KZ3pFCawE"></div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; padding: 20px;" onclick="ym(105796040,'reachGoal','free_consultation_last_block')">
+                    Отправить заявку
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- AI Consulting Section -->
+    <section class="section" id="consulting">
+        <div class="section-header">
+            <h2 class="section-title">
+                ИИ <span class="gradient">Консалтинг</span>
+            </h2>
+            <p class="section-subtitle">
+                Помогаю руководителям разобраться с автоматизацией и внедрить её в бизнес
+            </p>
+        </div>
+
+        <div class="consulting-grid">
+            <div class="consulting-card">
+                <div class="consulting-card-header">
+                    <div class="consulting-card-icon">💡</div>
+                    <div class="consulting-card-title">Персональная консультация</div>
+                </div>
+                <div class="consulting-card-pricing">
+                    <div class="badge-item"><span class="price-old">10 000 ₽</span> 7 500 ₽</div>
+                    <div class="badge-item price-discount">скидка 25%</div>
+                    <div class="badge-item">60 минут</div>
+                </div>
+                <p class="consulting-card-desc">
+                    За 60 минут я разберу ваш запрос, пойму вашу ситуацию и дам конкретные рекомендации — что внедрять, с чего начать и как это реализовать именно в вашем бизнесе.
+                </p>
+                <p class="consulting-card-diff">
+                    <strong>Чем отличается от 15-минутной диагностики?</strong> Диагностика — это быстрый разбор: я задаю вопросы и через 24 часа присылаю готовое решение. Консультация — для тех, кто хочет разобраться глубже: обсудить запрос и понять, как это работает именно у вас.
+                </p>
+                <h4>Для кого и какие запросы разбираем:</h4>
+                <ul class="consulting-card-features">
+                    <li>Хочу автоматизировать процессы, но не знаю с чего начать</li>
+                    <li>Не понимаю, какие инструменты подойдут именно мне</li>
+                    <li>Хочу внедрить ИИ в бизнес, но боюсь сделать что-то не так</li>
+                    <li>Уже пробовал(а) автоматизацию — не пошло, хочу разобраться почему</li>
+                    <li>Хочу посоветоваться перед тем как принять решение</li>
+                    <li>Индивидуальный запрос</li>
+                </ul>
+                <h4>После консультации вы получите:</h4>
+                <ul class="consulting-card-features">
+                    <li>Запись встречи (видео или аудио)</li>
+                    <li>Краткое резюме с конкретными рекомендациями</li>
+                    <li>Понимание, какие инструменты подходят под вашу задачу</li>
+                    <li>Чёткие следующие шаги — что делать и в каком порядке</li>
+                    <li>Ясность: стоит ли двигаться дальше и в каком направлении</li>
+                </ul>
+                <div class="consulting-card-center">
+                    <a href="https://t.me/buzzleapAI" target="_blank" class="consulting-card-btn">Записаться на консультацию</a>
+                </div>
+            </div>
+
+            <div class="consulting-card">
+                <div class="consulting-card-header">
+                    <div class="consulting-card-icon">📊</div>
+                    <div class="consulting-card-title">Аудит процессов руководителя</div>
+                </div>
+                <div class="consulting-card-pricing">
+                    <div class="badge-item"><span class="price-old">от 85 000 ₽</span> от 50 000 ₽</div>
+                    <div class="badge-item price-discount">скидка 40%</div>
+                    <div class="badge-item">2 недели</div>
+                </div>
+                <p class="consulting-card-desc">
+                    Глубокая работа для тех, кто готов системно заняться автоматизацией. Я погружаюсь в ваш бизнес, нахожу процессы которые съедают время и деньги — и даю конкретный план как это исправить.
+                </p>
+                <h4>Как проходит работа:</h4>
+                <ul class="consulting-card-features">
+                    <li><strong>Неделя 1 — Погружение.</strong> Изучаю ваш бизнес изнутри: провожу онлайн-встречи с вами, смотрю записи планёрок или участвую в них онлайн, изучаю регламенты если есть. Выявляю 3 повторяющихся процесса, которые съедают больше всего времени.</li>
+                    <li><strong>Неделя 2 — Анализ и отчёт.</strong> По каждому из 3 процессов прописываю схему «как есть» и «как будет», инструменты автоматизации, стоимость внедрения, экономию в часах и деньгах. В конце — финальная онлайн-презентация результатов.</li>
+                </ul>
+                <h4>Вы получите:</h4>
+                <ul class="consulting-card-features">
+                    <li>Итоговый отчёт с подробным описанием 3 AI-решений</li>
+                    <li>Карту процессов «как есть» и «как будет» с ИИ</li>
+                    <li>Таблицу приоритетов: что внедрять в первую очередь</li>
+                    <li>Расчёт окупаемости по каждому процессу — время и деньги</li>
+                    <li>Понимание как реализовать и внедрить автоматизацию</li>
+                    <li>Финальную онлайн-презентацию результатов</li>
+                </ul>
+                <p class="consulting-card-note">
+                    Нужен аудит не только ваших процессов, но и процессов команды? Могу провести анализ и для сотрудников — обсудим на консультации.
+                </p>
+                <div class="consulting-card-promo">
+                    🎁 Запишитесь сейчас — <strong>4-й процесс в подарок</strong>
+                </div>
+                <div class="consulting-card-center">
+                    <a href="https://t.me/buzzleapAI" target="_blank" class="consulting-card-btn">Записаться на аудит</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section class="section" id="cases">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="gradient">Кейсы</span>
+            </h2>
+        </div>
+        
+        <div class="cases-container">
+            <button class="slider-btn slider-btn-prev" onclick="scrollCases(-1)">‹</button>
+            <button class="slider-btn slider-btn-next" onclick="scrollCases(1)">›</button>
+            <div class="cases-slider" id="casesSlider">
+                <div class="case-card">
+                    <div class="case-image">🎙️</div>
+                    <div class="case-body">
+                        <h3 class="case-title">ИИ-ассистент руководителя</h3>
+                        <p class="case-desc">
+                            Голосовой и текстовый помощник: принимает задачи голосом, записывает в календарь, присылает ежедневные сводки, напоминает о важном. Руководитель перестаёт держать всё в голове.
+                        </p>
+                        <div class="case-tags">
+                            <span class="case-tag">✔ Запись задач голосом</span>
+                            <span class="case-tag">✔ Сводки и напоминания</span>
+                            <span class="case-tag">✔ Синхронизация с календарём</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image">✉️</div>
+                    <div class="case-body">
+                        <h3 class="case-title">Автоматическая персональная рассылка</h3>
+                        <p class="case-desc">
+                            Автоматизация для онлайн-курса: система сама формирует индивидуальное письмо под каждого ученика по инструкции и отправляет его ежедневно в 12:00. Без участия руководителя.
+                        </p>
+                        <div class="case-tags">
+                            <span class="case-tag">✔ Индивидуальные письма</span>
+                            <span class="case-tag">✔ Ежедневный запуск</span>
+                            <span class="case-tag">✔ Ноль ручного труда</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image">📊</div>
+                    <div class="case-body">
+                        <h3 class="case-title">AI-бизнес аналитик</h3>
+                        <p class="case-desc">
+                            Собирает данные со всех каналов, еженедельно формирует отчёт с результатами и рекомендациями — и сам отправляет руководителю. Без запросов и ручного сбора.
+                        </p>
+                        <div class="case-tags">
+                            <span class="case-tag">✔ Автоматические отчёты</span>
+                            <span class="case-tag">✔ Рекомендации по улучшению</span>
+                            <span class="case-tag">✔ Работает без участия</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work -->
+    <section class="section" id="how-we-work">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="gradient">Этапы работы</span>
+            </h2>
+        </div>
+        
+        <div class="process-list">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">Диагностика за 24 часа</h3>
+                    <p class="step-desc">
+                        Разбираем ваши процессы, выявляем точки потерь, считаем окупаемость. Вы получаете конкретный план — платно или в рамках диагностики-подарка при быстрой заявке.
+                    </p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">Создание бизнес-плана и ТЗ</h3>
+                    <p class="step-desc">
+                        <strong>Мы:</strong> разрабатываем детальный план с техническими характеристиками и этапами работы<br><br>
+                        <strong>От вас:</strong> информация об инструментах и платформах, которые вы хотели бы использовать в процессе/уже используете — CRM, Telegram и т.д.
+                    </p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">Разработка и тестирование</h3>
+                    <p class="step-desc">
+                        <strong>Мы:</strong> разрабатываем для вас автоматизацию/продукт и тестируем его
+                    </p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="step-title">Внедрение, обучение, поддержка</h3>
+                    <p class="step-desc">
+                        <strong>Мы:</strong> интегрируем решение в вашу систему, тестируем, обучаем вашу команду работе с решением, предоставляем поддержку от 7 до 30 дней<br><br>
+                        <em style="color: var(--buzz-purple);">Также доступна опция ежемесячной поддержки — стоимость 10% от стоимости автоматизации</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agent CTA -->
+    <section class="section" id="ai-calculation">
+        <div class="cta-banner" style="margin: 0;">
+            <h2>Получите индивидуальную<br>консультацию с AI-агентом</h2>
+            <p>Наш AI проанализирует ваш бизнес и предложит оптимальное решение</p>
+            <a href="https://t.me/AIConsultant_BuzzLeap_bot#" class="btn-primary" target="_blank" onclick="ym(105796040,'reachGoal','ai_consultant_request_last_block')">Получить расчет</a>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="section-header">
+            <h2 class="section-title">
+                Наши <span class="gradient">услуги</span>
+            </h2>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3 class="service-title">AI-агенты</h3>
+                <p class="service-desc">
+                    Умные виртуальные помощники для выполнения задач
+                </p>
+                <ul class="service-features">
+                    <li>Чат-боты для поддержки 24/7</li>
+                    <li>Голосовые AI-ассистенты</li>
+                    <li>Автоматическая обработка заявок</li>
+                    <li>Интеграция с CRM и мессенджерами</li>
+                </ul>
+                <div class="solution-pricing">
+                    <div class="badge-item">От 50 000₽</div>
+                    <div class="badge-item">От 7 дней</div>
+                </div>
+                <a href="https://t.me/buzzleapAI#" target="_blank" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3 class="service-title">Автоматизация процессов</h3>
+                <p class="service-desc">
+                    Оптимизация бизнес-процессов с AI-автоматизацией
+                </p>
+                <ul class="service-features">
+                    <li>Автоматизация документооборота</li>
+                    <li>Роботизация повторяющихся задач</li>
+                    <li>Интеграция систем и сервисов</li>
+                    <li>Аналитика и отчетность</li>
+                </ul>
+                <div class="solution-pricing">
+                    <div class="badge-item">От 15 000₽</div>
+                    <div class="badge-item">От 7 дней</div>
+                </div>
+                <a href="https://t.me/buzzleapAI#" target="_blank" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🧠</div>
+                <h3 class="service-title">Собственный AI-продукт</h3>
+                <p class="service-desc">
+                    Создание готового AI-продукта для продажи в вашем бизнесе
+                </p>
+                <ul class="service-features">
+                    <li>Анализ ниши и спроса</li>
+                    <li>Разработка концепции и упаковки</li>
+                    <li>Проектирование и разработка AI-агента</li>
+                    <li>Создание простого лендинга</li>
+                    <li>Подключение лендинга к метрикам</li>
+                </ul>
+                <div class="solution-pricing">
+                    <div class="badge-item">От 100 000₽</div>
+                    <div class="badge-item">От 14 дней</div>
+                </div>
+                <a href="https://t.me/buzzleapAI#" target="_blank" class="btn-details" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: transparent; border: 2px solid rgba(157, 92, 232, 0.4); border-radius: 50px; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='rgba(157,92,232,0.15)';this.style.borderColor='var(--buzz-purple)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(157,92,232,0.4)'">Подробнее</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ready Solutions -->
+    <section class="section" id="solutions">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="gradient">Готовые решения</span>
+            </h2>
+            <p class="section-subtitle">
+                Быстрый старт с проверенными инструментами
+            </p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3 class="service-title">AI-Аналитик</h3>
+                <p class="service-desc">
+                    Автоматически собирает данные из CRM, маркетинга и финансов, объединяет их в единую панель и еженедельно показывает, где бизнес теряет деньги, а где растёт с рекомендациями по улучшению.
+                </p>
+                <div class="solution-pricing">
+                    <div class="badge-item"><span class="price-old">от 150 000 ₽</span> от 105 000 ₽</div>
+                    <div class="badge-item price-discount">скидка 30%</div>
+                    <div class="badge-item">От 21 дня</div>
+                </div>
+                <div class="case-tags" style="margin-top: 25px;">
+                    <span class="case-tag">✔ Рост прибыли 10–20%</span>
+                    <span class="case-tag">✔ Экономия бюджета до 25%</span>
+                    <span class="case-tag">✔ Еженедельные отчёты</span>
+                </div>
+                <a href="https://t.me/buzzleapAI" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎙️</div>
+                <h3 class="service-title">ИИ-ассистент руководителя</h3>
+                <p class="service-desc">
+                    Принимает задачи голосом и текстом, напоминает, структурирует день, синхронизирует с календарём. Ваш личный AI-помощник, который не уходит в отпуск.
+                </p>
+                <div class="solution-pricing">
+                    <div class="badge-item">от 50 000 ₽</div>
+                    <div class="badge-item">от 7 дней</div>
+                </div>
+                <div class="case-tags" style="margin-top: 25px;">
+                    <span class="case-tag">✔ Разгрузка головы</span>
+                    <span class="case-tag">✔ Контроль задач</span>
+                    <span class="case-tag">✔ Работает 24/7</span>
+                </div>
+                <a href="https://t.me/buzzleapAI" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📨</div>
+                <h3 class="service-title">Автоматизация отчётности и коммуникаций</h3>
+                <p class="service-desc">
+                    Автоматические сводки, рассылки, уведомления — всё что вы сейчас делаете руками каждый день, будет работать само в нужное время.
+                </p>
+                <div class="solution-pricing">
+                    <div class="badge-item">от 40 000 ₽</div>
+                    <div class="badge-item">от 7 дней</div>
+                </div>
+                <div class="case-tags" style="margin-top: 25px;">
+                    <span class="case-tag">✔ Ежедневные отчёты</span>
+                    <span class="case-tag">✔ Персональные рассылки</span>
+                    <span class="case-tag">✔ Без участия руководителя</span>
+                </div>
+                <a href="https://t.me/buzzleapAI" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 25px; padding: 14px 30px; font-size: 14px;">Получить решение</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who I Am -->
+    <section class="section" id="about">
+        <div class="section-header">
+            <h2 class="section-title">
+                Кто <span class="gradient">я</span>
+            </h2>
+        </div>
+
+        <div class="about-bio">
+            <p>Меня зовут Юля. Более трёх лет я работала ассистентом руководителей в разных компаниях. Я видела изнутри, как бизнес теряет деньги, как руководители тонут в операционке и не могут из неё выйти, как команды выгорают на задачах, которые давно можно было автоматизировать.</p>
+            <p>Я человек, который умеет выстраивать процессы и управлять ими. Именно это и нужно, чтобы автоматизация работала, а не создавала новый хаос.</p>
+            <p>Когда я столкнулась с AI-автоматизацией — всё встало на место. Я прошла обучение, разобралась в инструментах и создала BuzzLeap, чтобы помогать руководителям делать то, что сама видела как острую необходимость: убирать рутину, возвращать время и наводить порядок в процессах.</p>
+        </div>
+
+        <h3 class="about-principles-title">Мои принципы работы</h3>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h4>Честность</h4>
+                <p>Говорю как есть, даже если это неудобно. Я здесь ради результата, а не ради красивых обещаний.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">📐</div>
+                <h4>Структура во всём</h4>
+                <p>Порядок в работе = результат в бизнесе. Хаос — это не про меня.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h4>Уважение и доверие</h4>
+                <p>Я не просто внедряю — я становлюсь долгосрочным партнёром, который поддерживает вашу систему.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🔬</div>
+                <h4>Осмысленные технологии</h4>
+                <p>Каждая функция, которую я внедряю, должна приносить измеримую пользу.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚖️</div>
+                <h4>Баланс</h4>
+                <p>Я всегда ищу равновесие между скоростью внедрения, качеством и человечностью.</p>
+            </div>
+        </div>
+
+        <div class="about-more-btn">
+            <a href="https://telegra.ph/Moya-istoriya-05-06-6" target="_blank" class="btn-secondary">Подробнее обо мне →</a>
+        </div>
+    </section>
+
+    <!-- Guide CTA -->
+    <section class="section">
+        <div class="cta-banner" style="margin: 0;">
+            <h2>Получите бесплатный гайд<br>по автоматизации</h2>
+            <p>Узнайте, какие процессы можно автоматизировать уже завтра</p>
+            <a href="https://t.me/buzz_leap/120" class="btn-primary" target="_blank" onclick="ym(105796040,'reachGoal','final_solution_cta')">Получить гайд</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>BUZZLEAP</h3>
+                    <p>
+                        AI Automation Agency — автоматизируем бизнес-процессы с помощью искусственного интеллекта
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#services">AI-агенты</a></li>
+                        <li><a href="#services">Автоматизация</a></li>
+                        <li><a href="#services">Собственный AI-продукт</a></li>
+                        <li><a href="#consulting">Консалтинг</a></li>
+                        <li><a href="#cases">Кейсы</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="#about">Обо мне</a></li>
+                        <li><a href="#how-we-work">Как работаем</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79052615414">+7 905 261 54 14</a></li>
+                        <li><a href="mailto:buzzleapai@mail.ru">buzzleapai@mail.ru</a></li>
+                        <li><a href="https://t.me/buzzleapAI" target="_blank">Telegram</a></li>
+                        <li><a href="https://t.me/buzz_leap" target="_blank">Telegram-канал</a></li>
+                        <li><a href="https://t.me/AIConsultant_BuzzLeap_bot" target="_blank">AI-консультант</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 BUZZLEAP AI Automation Agency. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animated Background with Water Spheres
+        const canvas = document.getElementById('animated-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        const colors = [
+            { r: 74, g: 159, b: 245 },   // Blue
+            { r: 157, g: 92, b: 232 },   // Purple
+            { r: 255, g: 75, b: 127 }    // Pink
+        ];
+        class Sphere {
+            constructor(x, y, radius, color) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+                this.targetSpeed = 0.15 + Math.random() * 0.2;
+                var angle = Math.random() * Math.PI * 2;
+                this.vx = Math.cos(angle) * this.targetSpeed;
+                this.vy = Math.sin(angle) * this.targetSpeed;
+                this.alpha = 0.225 + Math.random() * 0.225;
+                this.breaking = false;
+                this.breakParticles = [];
+                this.merging = false;
+                this.mergeProgress = 0;
+            }
+            update(delta = 1) {
+                if (this.breaking) {
+                    this.updateBreaking(delta);
+                    return;
+                }
+                if (this.merging) {
+                    this.mergeProgress += 0.01 * delta;
+                    if (this.mergeProgress >= 1) {
+                        this.merging = false;
+                        this.mergeProgress = 0;
+                    }
+                }
+                this.x += this.vx * delta;
+                this.y += this.vy * delta;
+                // Bounce off walls
+                if (this.x - this.radius < 0 || this.x + this.radius > canvas.width) {
+                    this.vx *= -1;
+                    this.x = Math.max(this.radius, Math.min(canvas.width - this.radius, this.x));
+                }
+                if (this.y - this.radius < 0 || this.y + this.radius > canvas.height) {
+                    this.vy *= -1;
+                    this.y = Math.max(this.radius, Math.min(canvas.height - this.radius, this.y));
+                }
+                // Maintain constant slow speed (no acceleration, no deceleration)
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (speed > 0.001) {
+                    this.vx = (this.vx / speed) * this.targetSpeed;
+                    this.vy = (this.vy / speed) * this.targetSpeed;
+                } else {
+                    const angle = Math.random() * Math.PI * 2;
+                    this.vx = Math.cos(angle) * this.targetSpeed;
+                    this.vy = Math.sin(angle) * this.targetSpeed;
+                }
+            }
+            updateBreaking(delta = 1) {
+                this.breakParticles.forEach(p => {
+                    p.x += p.vx * delta;
+                    p.y += p.vy * delta;
+                    p.alpha -= 0.015 * delta;
+                    p.radius *= Math.pow(0.98, delta);
+                });
+                this.breakParticles = this.breakParticles.filter(p => p.alpha > 0 && p.radius > 1);
+                if (this.breakParticles.length === 0) {
+                    this.breaking = false;
+                }
+            }
+            draw() {
+                if (this.breaking) {
+                    this.drawBreaking();
+                    return;
+                }
+                const gradient = ctx.createRadialGradient(
+                    this.x - this.radius * 0.3,
+                    this.y - this.radius * 0.3,
+                    0,
+                    this.x,
+                    this.y,
+                    this.radius
+                );
+                const c = this.color;
+                const alpha = this.alpha * (1 - this.mergeProgress * 0.5);
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.8})`);
+                gradient.addColorStop(0.3, `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha * 0.6})`);
+                gradient.addColorStop(1, `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha * 0.2})`);
+                // Glow effect
+                ctx.shadowBlur = 20 + this.mergeProgress * 20;
+                ctx.shadowColor = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius * (1 + this.mergeProgress * 0.3), 0, Math.PI * 2);
+                ctx.fill();
+                // Highlight
+                const highlight = ctx.createRadialGradient(
+                    this.x - this.radius * 0.4,
+                    this.y - this.radius * 0.4,
+                    0,
+                    this.x - this.radius * 0.4,
+                    this.y - this.radius * 0.4,
+                    this.radius * 0.5
+                );
+                highlight.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.4})`);
+                highlight.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                ctx.fillStyle = highlight;
+                ctx.beginPath();
+                ctx.arc(this.x - this.radius * 0.3, this.y - this.radius * 0.3, this.radius * 0.4, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+            drawBreaking() {
+                this.breakParticles.forEach(p => {
+                    const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+                    const c = this.color;
+                    gradient.addColorStop(0, `rgba(${c.r}, ${c.g}, ${c.b}, ${p.alpha * 0.8})`);
+                    gradient.addColorStop(1, `rgba(${c.r}, ${c.g}, ${c.b}, 0)`);
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+            break() {
+                this.breaking = true;
+                const particleCount = 8 + Math.floor(Math.random() * 8);
+                for (let i = 0; i < particleCount; i++) {
+                    const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.5;
+                    const speed = 0.027 + Math.random() * 0.067;
+                    this.breakParticles.push({
+                        x: this.x,
+                        y: this.y,
+                        radius: this.radius * 0.3 * (0.5 + Math.random() * 0.5),
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        alpha: this.alpha * 2.25
+                    });
+                }
+            }
+        }
+        // Create spheres
+        const spheres = [];
+        const isMobile = window.innerWidth <= 968;
+        const sphereCount = Math.max(isMobile ? 4 : 6, Math.floor((canvas.width * canvas.height) / 50000));
+        for (let i = 0; i < sphereCount; i++) {
+            const radius = isMobile ? (20 + Math.random() * 50) : (30 + Math.random() * 70);
+            const x = radius + Math.random() * (canvas.width - radius * 2);
+            const y = radius + Math.random() * (canvas.height - radius * 2);
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            spheres.push(new Sphere(x, y, radius, color));
+        }
+        // Collision detection and response — FIXED (no velocity accumulation bug)
+        function checkCollisions() {
+            for (let i = 0; i < spheres.length; i++) {
+                if (spheres[i].breaking) continue;
+                for (let j = i + 1; j < spheres.length; j++) {
+                    if (spheres[j].breaking) continue;
+                    const dx = spheres[j].x - spheres[i].x;
+                    const dy = spheres[j].y - spheres[i].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const minDist = spheres[i].radius + spheres[j].radius;
+                    if (distance < minDist) {
+                        const angle = Math.atan2(dy, dx);
+                        const sin = Math.sin(angle);
+                        const cos = Math.cos(angle);
+                        // Rotate velocities into collision frame
+                        const vx1 = spheres[i].vx * cos + spheres[i].vy * sin;
+                        const vy1 = spheres[i].vy * cos - spheres[i].vx * sin;
+                        const vx2 = spheres[j].vx * cos + spheres[j].vy * sin;
+                        const vy2 = spheres[j].vy * cos - spheres[j].vx * sin;
+                        // Elastic collision along x-axis in collision frame
+                        const m1 = spheres[i].radius;
+                        const m2 = spheres[j].radius;
+                        const newVx1 = ((m1 - m2) * vx1 + 2 * m2 * vx2) / (m1 + m2);
+                        const newVx2 = ((m2 - m1) * vx2 + 2 * m1 * vx1) / (m1 + m2);
+                        // Rotate back to world frame — FIX: use temp vars to avoid overwrite bug
+                        spheres[i].vx = newVx1 * cos - vy1 * sin;
+                        spheres[i].vy = vy1 * cos + newVx1 * sin;
+                        spheres[j].vx = newVx2 * cos - vy2 * sin;
+                        spheres[j].vy = vy2 * cos + newVx2 * sin;
+                        // Separate spheres so they don't overlap
+                        const overlap = minDist - distance;
+                        const separateX = (overlap / 2) * cos;
+                        const separateY = (overlap / 2) * sin;
+                        spheres[i].x -= separateX;
+                        spheres[i].y -= separateY;
+                        spheres[j].x += separateX;
+                        spheres[j].y += separateY;
+                        // Random behavior: break or merge
+                        const behavior = Math.random();
+                        if (behavior < 0.05) {
+                            // Break (5% chance)
+                            if (Math.random() < 0.5) {
+                                spheres[i].break();
+                            } else {
+                                spheres[j].break();
+                            }
+                        } else if (behavior < 0.15) {
+                            // Merge effect (10% chance)
+                            spheres[i].merging = true;
+                            spheres[j].merging = true;
+                        }
+                    }
+                }
+            }
+        }
+        // Animation loop — FIXED: delta time so speed is same on 60Hz and 144Hz monitors
+        let lastTime = 0;
+        function animate(timestamp) {
+            const delta = lastTime === 0 ? 1 : Math.min((timestamp - lastTime) / 16.67, 3);
+            lastTime = timestamp;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            checkCollisions();
+            spheres.forEach(sphere => {
+                sphere.update(delta);
+                sphere.draw();
+            });
+            // Remove fully broken spheres and add new ones to keep count stable
+            for (let i = spheres.length - 1; i >= 0; i--) {
+                if (spheres[i].breaking && spheres[i].breakParticles.length === 0) {
+                    spheres.splice(i, 1);
+                    const radius = isMobile ? (20 + Math.random() * 50) : (30 + Math.random() * 70);
+                    const x = radius + Math.random() * (canvas.width - radius * 2);
+                    const y = radius + Math.random() * (canvas.height - radius * 2);
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    spheres.push(new Sphere(x, y, radius, color));
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        // Start animation
+        animate(0);
+        
+        // Cases slider navigation
+        function scrollCases(direction) {
+            const slider = document.getElementById('casesSlider');
+            const cardWidth = 480; // card width + gap
+            slider.scrollBy({
+                left: direction * cardWidth,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Calculator
+        function calculateTime() {
+            const hourlyRate = parseFloat(document.getElementById('hourly-rate').value) || 0;
+            const routineHours = parseFloat(document.getElementById('routine-hours').value) || 0;
+
+            const savedPerDay = routineHours * 0.5;
+            const savedMonthHours = Math.round(savedPerDay * 22);
+            const savedYearHours = savedMonthHours * 12;
+            const savedYearDays = Math.floor(savedYearHours / 24);
+            const moneyMonth = Math.round(savedMonthHours * hourlyRate);
+            const moneyYear = moneyMonth * 12;
+
+            const benefitDays = Math.round(savedYearHours * 0.5);
+            const benefitMoney = Math.round(moneyYear * 0.5);
+
+            document.getElementById('time-month').textContent =
+                savedMonthHours.toLocaleString('ru-RU') + ' часов';
+            document.getElementById('money-month').textContent =
+                moneyMonth.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('time-year').textContent =
+                savedYearHours.toLocaleString('ru-RU') + ' часов';
+            document.getElementById('money-year').textContent =
+                moneyYear.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('benefit-days').textContent =
+                'от ' + benefitDays.toLocaleString('ru-RU') + ' часов';
+            document.getElementById('benefit-money').textContent =
+                'от ' + benefitMoney.toLocaleString('ru-RU') + ' ₽';
+        }
+
+        document.addEventListener('DOMContentLoaded', calculateTime);
+
+        // Countdown timer (15 min, resets on page load)
+        (function() {
+            var total = 15 * 60;
+            var el = document.getElementById('countdown-timer');
+            function tick() {
+                if (total <= 0) { el.textContent = '00:00'; return; }
+                var m = Math.floor(total / 60);
+                var s = total % 60;
+                el.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+                total--;
+                setTimeout(tick, 1000);
+            }
+            tick();
+        })();
+
+        // Contact method toggle
+        function toggleContactField(value) {
+            document.querySelectorAll('.conditional-field').forEach(function(field) {
+                field.classList.remove('active');
+            });
+            var targetId = 'field-' + value;
+            var target = document.getElementById(targetId);
+            if (target) {
+                target.classList.add('active');
+            }
+        }
+
+        // Phone input: only allow digits starting with 8
+        var phoneInput = document.getElementById('phone-input');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length > 0 && this.value[0] !== '8') {
+                    this.value = '8' + this.value.substring(1);
+                }
+                if (this.value.length > 11) {
+                    this.value = this.value.substring(0, 11);
+                }
+            });
+            phoneInput.addEventListener('focus', function() {
+                if (this.value === '') {
+                    this.value = '8';
+                }
+            });
+        }
+
+        // Email validation
+        var emailInput = document.getElementById('email-input');
+        if (emailInput) {
+            emailInput.addEventListener('blur', function() {
+                var emailPattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+                if (this.value && !emailPattern.test(this.value)) {
+                    this.style.borderColor = 'rgba(255, 75, 127, 0.6)';
+                    this.setCustomValidity('Введите корректный email');
+                } else {
+                    this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    this.setCustomValidity('');
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            var burger = document.querySelector('.burger-menu');
+            var nav = document.getElementById('mobileNav');
+            var header = document.querySelector('.header');
+            burger.classList.toggle('active');
+            nav.classList.toggle('active');
+            var isOpen = nav.classList.contains('active');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            header.style.background = isOpen ? 'transparent' : '';
+            header.style.borderBottom = isOpen ? 'none' : '';
+            header.style.backdropFilter = isOpen ? 'none' : '';
+            header.style.webkitBackdropFilter = isOpen ? 'none' : '';
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission handler
+        (function() {
+            var form = document.querySelector('.contact-form form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Проверка reCAPTCHA
+                    var recaptchaResponse = grecaptcha.getResponse();
+                    if (!recaptchaResponse) {
+                        alert('Пожалуйста, подтвердите что вы не робот');
+                        return;
+                    }
+
+                    var email = document.getElementById('email-input').value;
+                    var phone = document.getElementById('phone-input').value;
+                    var contactMethod = document.querySelector('input[name="contact_method"]:checked').value;
+                    var telegramNick = '';
+                    var callTime = '';
+                    var customTime = '';
+                    var message = '';
+
+                    var phoneField = document.getElementById('field-phone');
+                    if (phoneField && phoneField.classList.contains('active')) {
+                        callTime = phoneField.querySelector('input').value;
+                    }
+
+                    var telegramField = document.getElementById('field-telegram');
+                    if (telegramField && telegramField.classList.contains('active')) {
+                        telegramNick = telegramField.querySelector('input').value;
+                    }
+
+                    var now = new Date();
+                    var submittedAt = now.toISOString();
+
+                    var payload = {
+                        phone: phone,
+                        email: email,
+                        message: message,
+                        contactMethod: contactMethod,
+                        telegramNick: telegramNick,
+                        callTime: callTime,
+                        customTime: customTime,
+                        submittedAt: submittedAt
+                    };
+
+                    var submitBtn = form.querySelector('button[type="submit"]');
+                    var origText = submitBtn.textContent;
+                    submitBtn.textContent = 'Отправка...';
+                    submitBtn.disabled = true;
+
+                    fetch('https://hook.eu1.make.com/bjh7418s0rkj17u4f51x7jb6nva5hwfe', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(function() {
+                        form.reset();
+                        submitBtn.textContent = origText;
+                        submitBtn.disabled = false;
+                        document.getElementById('successModal').classList.add('active');
+                    })
+                    .catch(function() {
+                        form.reset();
+                        submitBtn.textContent = origText;
+                        submitBtn.disabled = false;
+                        document.getElementById('successModal').classList.add('active');
+                    });
+                });
+            }
+        })();
+
+        // Success modal functions
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('successModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeSuccessModal();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Success Modal -->
+    <div class="success-modal-overlay" id="successModal">
+        <div class="success-modal">
+            <button class="close-modal" onclick="closeSuccessModal()">&times;</button>
+            <div class="success-icon">&#10004;</div>
+            <h3>Спасибо за заявку!</h3>
+            <p>Мы получили вашу заявку и свяжемся с вами в ближайшее время. А пока можете получить консультацию у нашего AI-агента в Telegram</p>
+            <a href="https://t.me/AIConsultant_BuzzLeap_bot#" target="_blank" class="btn-telegram">Перейти к AI-консультанту</a>
+        </div>
+    </div>
+
+</body>
+</html>

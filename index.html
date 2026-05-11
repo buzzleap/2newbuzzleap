@@ -2269,7 +2269,7 @@
                     </div>
                     <div class="calc-metric">
                         <div class="calc-metric-icon">⏱</div>
-                        <div class="calc-metric-value" id="time-year">16 дней</div>
+                        <div class="calc-metric-value" id="time-year">396 часов</div>
                         <div class="calc-metric-label">Сэкономлено времени в год</div>
                     </div>
                     <div class="calc-metric">
@@ -2288,7 +2288,7 @@
                     <div class="calc-benefit-title">Ваша выгода от работы с нами</div>
                     <div class="calc-benefit-values">
                         <div class="calc-benefit-item">
-                            <span class="calc-benefit-value" id="benefit-days">0 дней</span>
+                            <span class="calc-benefit-value" id="benefit-days">0 часов</span>
                             <span class="calc-benefit-label">сэкономлено в год</span>
                         </div>
                         <div class="calc-benefit-divider">и</div>
@@ -2498,7 +2498,7 @@
                     Нужен аудит не только ваших процессов, но и процессов команды? Могу провести анализ и для сотрудников — обсудим на консультации.
                 </p>
                 <div class="consulting-card-promo">
-                    🎁 Запишитесь на аудит сейчас — и я разберу <strong>4-й процесс бесплатно</strong> в подарок
+                    🎁 Запишитесь сейчас — <strong>4-й процесс в подарок</strong>
                 </div>
                 <div class="consulting-card-center">
                     <a href="https://t.me/buzzleapAI" target="_blank" class="consulting-card-btn">Записаться на аудит</a>
@@ -2777,7 +2777,7 @@
 
         <div class="about-bio">
             <p>Меня зовут Юля. Более трёх лет я работала ассистентом руководителей в разных компаниях. Я видела изнутри, как бизнес теряет деньги, как руководители тонут в операционке и не могут из неё выйти, как команды выгорают на задачах, которые давно можно было автоматизировать.</p>
-            <p>Я не технарь — я человек, который умеет выстраивать процессы и управлять ими. Именно это и нужно, чтобы автоматизация работала, а не создавала новый хаос.</p>
+            <p>Я человек, который умеет выстраивать процессы и управлять ими. Именно это и нужно, чтобы автоматизация работала, а не создавала новый хаос.</p>
             <p>Когда я столкнулась с AI-автоматизацией — всё встало на место. Я прошла обучение, разобралась в инструментах и создала BuzzLeap, чтобы помогать руководителям делать то, что сама видела как острую необходимость: убирать рутину, возвращать время и наводить порядок в процессах.</p>
         </div>
 
@@ -3136,7 +3136,7 @@
             const moneyMonth = Math.round(savedMonthHours * hourlyRate);
             const moneyYear = moneyMonth * 12;
 
-            const benefitDays = Math.floor(savedYearDays * 0.5);
+            const benefitDays = Math.round(savedYearHours * 0.5);
             const benefitMoney = Math.round(moneyYear * 0.5);
 
             document.getElementById('time-month').textContent =
@@ -3144,11 +3144,11 @@
             document.getElementById('money-month').textContent =
                 moneyMonth.toLocaleString('ru-RU') + ' ₽';
             document.getElementById('time-year').textContent =
-                savedYearDays.toLocaleString('ru-RU') + ' дней';
+                savedYearHours.toLocaleString('ru-RU') + ' часов';
             document.getElementById('money-year').textContent =
                 moneyYear.toLocaleString('ru-RU') + ' ₽';
             document.getElementById('benefit-days').textContent =
-                'от ' + benefitDays.toLocaleString('ru-RU') + ' дней';
+                'от ' + benefitDays.toLocaleString('ru-RU') + ' часов';
             document.getElementById('benefit-money').textContent =
                 'от ' + benefitMoney.toLocaleString('ru-RU') + ' ₽';
         }
